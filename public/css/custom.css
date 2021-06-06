@@ -122,3 +122,64 @@ body {
 .left-item-icon span {
     padding-left: 14px;
 }
+.card-body .avatar {
+    width: 50px;
+    height: 50px;
+}
+.wdut {
+    background: #f2f2f5;
+    padding: 10px;
+    width: 100%;
+    border-radius: 20px;
+    color: #888888;
+}
+.wdut:hover {
+    background: #e7e7e8;
+    cursor: pointer;
+}
+.stream i {
+    vertical-align: bottom;
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/PDfqklc5gpf.png");
+    background-position: 0px -82px;
+    background-size: 49px 559px;
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.image-video i {
+    vertical-align: bottom;
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/PDfqklc5gpf.png");
+    background-position: 0px -382px;
+    background-size: 49px 559px;
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.activity i {
+    vertical-align: bottom;
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/PDfqklc5gpf.png");
+    background-position: 0px -257px;
+    background-size: 49px 559px;
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.stream,
+.image-video,
+.activity {
+    padding: 7px;
+    padding-right: 0;
+    padding-left: 0;
+    text-align: center;
+    border-radius: 10px;
+    color: #888888;
+}
+.stream:hover,
+.image-video:hover,
+.activity:hover {
+    background: #f2f2f5;
+    cursor: pointer;
+}
