@@ -14,7 +14,7 @@
 
 <body>
     <nav class="shadow-sm navbar navbar-expand-lg navbar-light bg-light header">
-        <a class="navbar-brand fb-logo" href="#">
+        <a class="navbar-brand fb-logo" href="/">
             <i class="fab fa-facebook"></i>
         </a>
         <form class="form-inline my-2 my-lg-0 seach">
@@ -76,7 +76,9 @@
         </div>
     </nav>
 
-    @yield('content')
+    <div> 
+        @yield('content')
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">

@@ -1,3 +1,9 @@
+body {
+    background: #f0f2f5;
+}
+.row {
+    margin: 0;
+}
 .header {
     background: white;
     padding: 5px 10px;
@@ -85,4 +91,34 @@
 .right-icon:hover {
     background: #dddde6;
     cursor: pointer;
+}
+.left-sidebar img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.left-item {
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.left-item-icon {
+    padding: 5px 10px;
+    border-radius: 5px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.left-item:hover,
+.left-item-icon:hover {
+    background: #e4e6eb;
+    cursor: pointer;
+}
+.left-item-icon i {
+    font-size: 30px;
+    color: #0e8bf1;
+}
+.left-item-icon span {
+    padding-left: 14px;
 }
