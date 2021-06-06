@@ -1,0 +1,72 @@
+html {
+	height: 100%;
+}
+body {
+	background-color: #f0f2f5;
+	height: 100%;
+	overflow-x: hidden;
+}
+input:focus,
+select:focus,
+button:focus {
+	box-shadow: none !important;
+	outline: none !important;
+}
+.pl-35 {
+	padding-left: 35px;
+}
+.custom-control-inline {
+	margin-right: 5px;
+}
+.w-30 {
+	width: 32%;
+}
+.content {
+	padding: 0px 100px;
+	height: 100%;
+}
+.login-card {
+	border-radius: 10px;
+}
+.forget-pwd-a {
+	color: #1877f2;
+	font-size: 14px;
+	font-weight: 500;
+}
+.login-card input::placeholder,
+#register-form input::placeholder {
+	color: rgb(128, 128, 128);
+	font-size: 15px;
+}
+.login-card input:focus::placeholder,
+#register-form input:focus::placeholder {
+	color: rgb(179, 177, 177);
+	transition: 0.2s;
+}
+.btn-success {
+	background-color: #42b72a;
+}
+.login-card + div a {
+	color: #000000;
+	font-weight: 700;
+}
+.login-card + div p {
+	font-size: 15px;
+	text-align: center;
+}
+.modal-header h3 {
+	font-weight: 700;
+}
+.modal-header span {
+	display: block;
+	color: #606770;
+}
+.small-text {
+	font-size: 11px;
+	display: inline-block;
+	color: #606770;
+}
+.small-text-danger {
+	font-size: 11px;
+	color: #d53e41;
+}

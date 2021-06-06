@@ -6,19 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Facebook</title>
-    <link rel="shortcut icon" href="{{ asset('images/facebook-favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/facebook-favicon.ico') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 
 <body>
-    {{-- @if ($errors->any())
-		@foreach ($errors->all() as $error)
-		<li>{{ $error }}</li>
-		@endforeach
-	@endif --}}
-
     <div class="row justify-content-center content align-items-center">
         <div class="col-6">
             <img src="{{ asset('images/facebook-logo.svg') }}" width="300">
@@ -33,13 +27,13 @@
                         @csrf
                         <div class="form-group">
                             <input type="email" class="form-control form-control-lg 
-       @if (!isset($registering)) @error('email') is-invalid @enderror @endif" placeholder="Email hoặc số điện thoại" name="email"
-                                value="{{ old('email') }}">
+                            @if (!isset($registering)) @error('email') is-invalid @enderror @endif"
+                                placeholder="Email hoặc số điện thoại" name="email" value="{{ old('email') }}">
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control form-control-lg 
-       @if (!isset($registering)) @error('password') is-invalid @enderror @endif" placeholder="Mật khẩu" name="password"
-                                value="{{ old('password') }}">
+                            @if (!isset($registering)) @error('password') is-invalid @enderror @endif"
+                                placeholder="Mật khẩu" name="password" value="{{ old('password') }}">
                         </div>
                         @if ($errors->any() && !isset($registering))
                             <div class="small-text-danger my-2">Thông tin không chính xác. Vui lòng nhập lại</div>
@@ -202,7 +196,7 @@
 
         </script>
     @endif
-    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/login.js') }}"></script>
 </body>
 
 </html>

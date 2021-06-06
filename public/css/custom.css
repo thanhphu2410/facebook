@@ -1,72 +1,88 @@
-html {
-	height: 100%;
+.header {
+    background: white;
+    padding: 5px 10px;
 }
-body {
-	background-color: #f0f2f5;
-	height: 100%;
-	overflow-x: hidden;
+.fb-logo i {
+    font-size: 40px;
+    color: #0e8bf1;
 }
-input:focus,
-select:focus,
-button:focus {
-	box-shadow: none !important;
-	outline: none !important;
+.seach {
+    position: relative;
 }
-.pl-35 {
-	padding-left: 35px;
+.seach input {
+    border-radius: 20px;
+    width: 240px !important;
+    background: #f0f2f5;
+    border: none;
 }
-.custom-control-inline {
-	margin-right: 5px;
+.seach input:focus {
+    box-shadow: none;
+    border: none;
+    background: #f0f2f5;
 }
-.w-30 {
-	width: 32%;
+.seach input::placeholder {
+    padding-left: 20px;
+    font-size: 15px;
 }
-.content {
-	padding: 0px 100px;
-	height: 100%;
+.seach input:focus ~ i {
+    display: none;
+    padding-left: 0;
 }
-.login-card {
-	border-radius: 10px;
+.seach input:focus::placeholder {
+    padding-left: 0;
 }
-.forget-pwd-a {
-	color: #1877f2;
-	font-size: 14px;
-	font-weight: 500;
+.seach i {
+    position: absolute;
+    left: 10px;
+    color: #888888;
 }
-.login-card input::placeholder,
-#register-form input::placeholder {
-	color: rgb(128, 128, 128);
-	font-size: 15px;
+.custom-nav {
+    padding-left: 10px;
 }
-.login-card input:focus::placeholder,
-#register-form input:focus::placeholder {
-	color: rgb(179, 177, 177);
-	transition: 0.2s;
+.custom-nav li {
+    padding: 5px 38px;
+    border-radius: 8px;
 }
-.btn-success {
-	background-color: #42b72a;
+.custom-nav .active {
+    padding: 5px 38px;
+    border-radius: 0;
+    border-bottom: 3px solid #1877f2;
 }
-.login-card + div a {
-	color: #000000;
-	font-weight: 700;
+.custom-nav .active i {
+    color: #1877f2;
+    font-size: 24px;
 }
-.login-card + div p {
-	font-size: 15px;
-	text-align: center;
+.custom-nav li i {
+    font-size: 24px;
 }
-.modal-header h3 {
-	font-weight: 700;
+.custom-nav li:hover:not(.active) {
+    background: #f1f1f1;
 }
-.modal-header span {
-	display: block;
-	color: #606770;
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
-.small-text {
-	font-size: 11px;
-	display: inline-block;
-	color: #606770;
+.right-side {
+    padding: 5px;
+    border-radius: 20px;
+    margin-right: 8px;
 }
-.small-text-danger {
-	font-size: 11px;
-	color: #d53e41;
+.right-side:hover {
+    background: #e6e6e6;
+    cursor: pointer;
+}
+.right-side span {
+    font-weight: 500;
+    padding-right: 10px;
+}
+.right-icon {
+    background: #e4e6eb;
+    border-radius: 50%;
+    padding: 10px 15px;
+    margin-right: 8px;
+}
+.right-icon:hover {
+    background: #dddde6;
+    cursor: pointer;
 }
