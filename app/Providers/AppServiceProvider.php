@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('auth.login', function ($view) {
+            if (session()->has('registering')) {
+                $view->with('registering', session('registering'));
+                session()->forget('registering');
+            }
+        });
     }
 }
