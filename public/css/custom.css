@@ -1,3 +1,29 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12 {
+    padding: 0;
+}
+img {
+    max-width: 100%;
+}
 body {
     background: #f0f2f5;
 }
@@ -7,6 +33,9 @@ body {
 .header {
     background: white;
     padding: 5px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 .fb-logo i {
     font-size: 40px;
@@ -179,7 +208,72 @@ body {
 }
 .stream:hover,
 .image-video:hover,
-.activity:hover {
+.activity:hover,
+.reaction .like:hover,
+.reaction .comment:hover,
+.reaction .share:hover {
     background: #f2f2f5;
     cursor: pointer;
+}
+.time_post {
+    font-size: 13px;
+    font-weight: 400;
+    color: #888888;
+}
+.time_post ~ i {
+    font-size: 13px;
+    color: #5b5b5b;
+}
+.setting {
+    border-radius: 50%;
+    background: #fff;
+    border: 0;
+}
+.setting i {
+    font-size: 13px;
+    color: #595959;
+}
+.posts .post-image {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+.reaction .like,
+.reaction .comment,
+.reaction .share {
+    padding: 3px;
+    padding-right: 0;
+    padding-left: 0;
+    text-align: center;
+    border-radius: 5px;
+    color: #5d5d5d;
+}
+.reaction .like span,
+.reaction .comment span,
+.reaction .share span {
+    vertical-align: text-bottom;
+}
+.reaction .like i {
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/o8M3gMjyxwj.png");
+    background-position: 0 -147px;
+}
+.reaction .comment i {
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/o8M3gMjyxwj.png");
+    background-position: 0 -109px;
+}
+.reaction .share i {
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/o8M3gMjyxwj.png");
+    background-position: 0 -166px;
+}
+.reaction .like i,
+.reaction .comment i,
+.reaction .share i {
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-size: 25px 773px;
+}
+.reaction-count span {
+    color: #65676b;
 }
