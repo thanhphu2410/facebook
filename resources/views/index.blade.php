@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <div class="card shadow-sm mt-3 posts">
+            <div class="card shadow-sm my-3 posts">
                 <div class="card-body p-0">
                     <div class="d-flex align-items-center p-3">
                         <div class="col-9 d-flex align-items-center">
@@ -122,6 +122,44 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3 pl-3 mt-4 right-sidebar">
+            <div class="d-flex align-items-center top">
+                <div class="col-6">
+                    <span>Người liên hệ</span>
+                </div>
+                <div class="col-6 text-right">
+                    <button type="button" class="btn btn-light mr-2">
+                        <i class="fas fa-video"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-light mr-2">
+                        <i class="fas fa-search"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-light">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mt-2">
+                <div class="left-item-icon contact">
+                    <span class="online"></span>
+                    <img src="{{ asset('images/avatar.jpeg') }}">
+                    <span>Thanh Phú</span>
+                </div>
+
+                <div class="left-item-icon contact">
+                    <img src="{{ asset('images/avatar.jpeg') }}">
+                    <span>Thanh Phú</span>
+                </div>
+
+                <div class="left-item-icon contact">
+                    <img src="{{ asset('images/avatar.jpeg') }}">
+                    <span>Thanh Phú</span>
                 </div>
             </div>
         </div>

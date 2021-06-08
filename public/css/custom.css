@@ -277,3 +277,37 @@ body {
 .reaction-count span {
     color: #65676b;
 }
+.right-sidebar .top {
+    color: #696969;
+}
+.right-sidebar .top span {
+    font-size: 18px;
+    font-weight: 500;
+}
+.right-sidebar .top button {
+    border-radius: 50%;
+    background: #f0f2f5;
+    border: 0;
+}
+.right-sidebar .top button:hover {
+    background: #e6e6e6;
+}
+.right-sidebar .contact {
+    position: relative;
+}
+.right-sidebar .contact img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.online {
+    padding: 0 !important;
+    width: 10px;
+    height: 10px;
+    background: #31a24c;
+    position: absolute;
+    border-radius: 50%;
+    bottom: 10px;
+    left: 39px;
+    box-shadow: 0px 0px 0px 3px #f0f2f5;
+}
