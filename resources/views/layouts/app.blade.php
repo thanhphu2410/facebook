@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto center-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/">
                         <i class="fas fa-home"></i>
                     </a>
                 </li>
@@ -57,10 +57,12 @@
         </div>
 
         <div class="d-flex align-items-center">
-            <div class="right-side-nav">
-                <img src="{{ asset('images/avatar.jpeg') }}" class="avatar">
-                <span>{{ auth()->user()->first_name }}</span>
-            </div>
+            <a href="{{ route('profile', [$current_user->id]) }}">
+                <div class="right-side-nav">
+                    <img src="{{ asset('images/avatar.png') }}" class="avatar">
+                    <span>{{ $current_user->first_name }}</span>
+                </div>
+            </a>
             <div class="right-icon">
                 <i class="fas fa-plus"></i>
             </div>
@@ -76,7 +78,7 @@
         </div>
     </nav>
 
-    <div> 
+    <div>
         @yield('content')
     </div>
 

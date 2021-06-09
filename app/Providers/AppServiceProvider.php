@@ -23,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        view()->composer('*', function ($view) {
+            $view->with('current_user', auth()->user());
+        });
+
         view()->composer('auth.login', function ($view) {
             if (session()->has('registering')) {
                 $view->with('registering', session('registering'));

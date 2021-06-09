@@ -15,9 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return view('index');
-    });
+    Route::view('/', 'index');
+    Route::get('/profile/{profile}', 'ProfileController@edit')->name('profile');
 });
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
