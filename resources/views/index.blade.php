@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <div class="mt-4 pl-2 col-6 mb-5">
+        <div class="mt-4 pl-2 col-6 mb-5 content">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
@@ -132,11 +132,11 @@
                     <span>Người liên hệ</span>
                 </div>
                 <div class="col-6 text-right">
-                    <button type="button" class="btn btn-light mr-2">
+                    <button type="button" class="btn btn-light mr-1">
                         <i class="fas fa-video"></i>
                     </button>
 
-                    <button type="button" class="btn btn-light mr-2">
+                    <button type="button" class="btn btn-light mr-1">
                         <i class="fas fa-search"></i>
                     </button>
 
@@ -146,18 +146,18 @@
                 </div>
             </div>
             <div class="mt-2">
-                <div class="left-item-icon contact">
+                <div class="contact">
                     <span class="online"></span>
                     <img src="{{ asset('images/avatar.jpeg') }}">
                     <span>Thanh Phú</span>
                 </div>
 
-                <div class="left-item-icon contact">
+                <div class="contact">
                     <img src="{{ asset('images/avatar.jpeg') }}">
                     <span>Thanh Phú</span>
                 </div>
 
-                <div class="left-item-icon contact">
+                <div class="contact">
                     <img src="{{ asset('images/avatar.jpeg') }}">
                     <span>Thanh Phú</span>
                 </div>

@@ -27,7 +27,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto custom-nav">
+            <ul class="navbar-nav mr-auto center-nav">
                 <li class="nav-item active">
                     <a class="nav-link" href="#">
                         <i class="fas fa-home"></i>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="d-flex align-items-center">
-            <div class="right-side">
+            <div class="right-side-nav">
                 <img src="{{ asset('images/avatar.jpeg') }}" class="avatar">
                 <span>{{ auth()->user()->first_name }}</span>
             </div>

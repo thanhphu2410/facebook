@@ -1,10 +1,12 @@
+/* ==============================BEGIN SETUP CSS============================== */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
-p {
+p,
+.row {
     margin: 0;
 }
 .col-1,
@@ -27,9 +29,9 @@ img {
 body {
     background: #f0f2f5;
 }
-.row {
-    margin: 0;
-}
+/* ==============================END SETUP CSS============================== */
+
+/* ==============================BEGIN HEADER============================== */
 .header {
     background: white;
     padding: 5px 10px;
@@ -37,60 +39,60 @@ body {
     top: 0;
     z-index: 1;
 }
-.fb-logo i {
+.header .fb-logo i {
     font-size: 40px;
     color: #0e8bf1;
 }
-.seach {
+.header .seach {
     position: relative;
 }
-.seach input {
+.header .seach input {
     border-radius: 20px;
     width: 240px !important;
     background: #f0f2f5;
     border: none;
 }
-.seach input:focus {
+.header .seach input:focus {
     box-shadow: none;
     border: none;
     background: #f0f2f5;
 }
-.seach input::placeholder {
+.header .seach input::placeholder {
     padding-left: 20px;
     font-size: 15px;
 }
-.seach input:focus ~ i {
+.header .seach input:focus ~ i {
     display: none;
     padding-left: 0;
 }
-.seach input:focus::placeholder {
+.header .seach input:focus::placeholder {
     padding-left: 0;
 }
-.seach i {
+.header .seach i {
     position: absolute;
     left: 10px;
     color: #888888;
 }
-.custom-nav {
+.header .center-nav {
     padding-left: 10px;
 }
-.custom-nav li {
+.header .center-nav li {
     padding: 5px 38px;
     border-radius: 8px;
 }
-.custom-nav .active {
+.header .center-nav .active {
     padding: 5px 38px;
     border-radius: 0;
     border-bottom: 3px solid #1877f2;
 }
-.custom-nav .active i {
+.header .center-nav .active i {
     color: #1877f2;
     font-size: 24px;
 }
-.custom-nav li i {
+.header .center-nav li i {
     font-size: 24px;
 }
-.custom-nav li:hover:not(.active) {
+.header .center-nav li:hover:not(.active) {
     background: #f1f1f1;
 }
 .avatar {
@@ -98,40 +100,44 @@ body {
     height: 30px;
     border-radius: 50%;
 }
-.right-side {
+.header .right-side-nav {
     padding: 5px;
     border-radius: 20px;
     margin-right: 8px;
 }
-.right-side:hover {
+.header .right-side-nav:hover {
     background: #e6e6e6;
     cursor: pointer;
 }
-.right-side span {
+.header .right-side-nav span {
     font-weight: 500;
     padding-right: 10px;
 }
-.right-icon {
+.header .right-icon {
     background: #e4e6eb;
     border-radius: 50%;
     padding: 10px 15px;
     margin-right: 8px;
 }
-.right-icon:hover {
+.header .right-icon:hover {
     background: #dddde6;
     cursor: pointer;
 }
+/* ==============================END HEADER============================== */
+
+/* ==============================BEGIN LETF SIDEBAR============================== */
 .left-sidebar img {
     width: 35px;
     height: 35px;
     border-radius: 50%;
 }
-.left-item {
+.left-sidebar .left-item {
     padding: 5px 10px;
     border-radius: 5px;
     margin-bottom: 10px;
 }
-.left-item-icon {
+.left-sidebar .left-item-icon,
+.right-sidebar .contact {
     padding: 5px 10px;
     border-radius: 5px;
     height: 50px;
@@ -139,34 +145,39 @@ body {
     align-items: center;
     margin-bottom: 10px;
 }
-.left-item:hover,
-.left-item-icon:hover {
+.left-sidebar .left-item:hover,
+.left-sidebar .left-item-icon:hover,
+.right-sidebar .contact:hover {
     background: #e4e6eb;
     cursor: pointer;
 }
-.left-item-icon i {
+.left-sidebar .left-item-icon i {
     font-size: 30px;
     color: #0e8bf1;
 }
-.left-item-icon span {
+.left-sidebar .left-item-icon span,
+.right-sidebar .contact span {
     padding-left: 14px;
 }
-.card-body .avatar {
+/* ==============================END LETF SIDEBAR============================== */
+
+/* ==============================BEGIN CONTENT============================== */
+.content .card-body .avatar {
     width: 50px;
     height: 50px;
 }
-.wdut {
+.content .wdut {
     background: #f2f2f5;
     padding: 10px;
     width: 100%;
     border-radius: 20px;
     color: #888888;
 }
-.wdut:hover {
+.content .wdut:hover {
     background: #e7e7e8;
     cursor: pointer;
 }
-.stream i {
+.content .stream i {
     vertical-align: bottom;
     background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/PDfqklc5gpf.png");
     background-position: 0px -82px;
@@ -176,7 +187,7 @@ body {
     background-repeat: no-repeat;
     display: inline-block;
 }
-.image-video i {
+.content .image-video i {
     vertical-align: bottom;
     background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/PDfqklc5gpf.png");
     background-position: 0px -382px;
@@ -186,7 +197,7 @@ body {
     background-repeat: no-repeat;
     display: inline-block;
 }
-.activity i {
+.content .activity i {
     vertical-align: bottom;
     background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/PDfqklc5gpf.png");
     background-position: 0px -257px;
@@ -196,9 +207,9 @@ body {
     background-repeat: no-repeat;
     display: inline-block;
 }
-.stream,
-.image-video,
-.activity {
+.content .stream,
+.content .image-video,
+.content .activity {
     padding: 7px;
     padding-right: 0;
     padding-left: 0;
@@ -206,41 +217,44 @@ body {
     border-radius: 10px;
     color: #888888;
 }
-.stream:hover,
-.image-video:hover,
-.activity:hover,
-.reaction .like:hover,
-.reaction .comment:hover,
-.reaction .share:hover {
+.content .stream:hover,
+.content .image-video:hover,
+.content .activity:hover,
+.content .reaction .like:hover,
+.content .reaction .comment:hover,
+.content .reaction .share:hover {
     background: #f2f2f5;
     cursor: pointer;
 }
-.time_post {
+.content .time_post {
     font-size: 13px;
     font-weight: 400;
     color: #888888;
 }
-.time_post ~ i {
+.content .time_post ~ i {
     font-size: 13px;
     color: #5b5b5b;
 }
-.setting {
+.content .setting {
     border-radius: 50%;
     background: #fff;
     border: 0;
 }
-.setting i {
+.content .setting:hover {
+    background: #f2f2f5;
+}
+.content .setting i {
     font-size: 13px;
     color: #595959;
 }
-.posts .post-image {
+.content .posts .post-image {
     width: 100%;
     height: 600px;
     object-fit: cover;
 }
-.reaction .like,
-.reaction .comment,
-.reaction .share {
+.content .reaction .like,
+.content .reaction .comment,
+.content .reaction .share {
     padding: 3px;
     padding-right: 0;
     padding-left: 0;
@@ -248,36 +262,40 @@ body {
     border-radius: 5px;
     color: #5d5d5d;
 }
-.reaction .like span,
-.reaction .comment span,
-.reaction .share span {
+.content .reaction .like span,
+.content .reaction .comment span,
+.content .reaction .share span {
     vertical-align: text-bottom;
 }
-.reaction .like i {
+.content .reaction .like i {
     background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/o8M3gMjyxwj.png");
     background-position: 0 -147px;
 }
-.reaction .comment i {
+.content .reaction .comment i {
     background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/o8M3gMjyxwj.png");
     background-position: 0 -109px;
 }
-.reaction .share i {
+.content .reaction .share i {
     background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/o8M3gMjyxwj.png");
     background-position: 0 -166px;
 }
-.reaction .like i,
-.reaction .comment i,
-.reaction .share i {
+.content .reaction .like i,
+.content .reaction .comment i,
+.content .reaction .share i {
     width: 18px;
     height: 18px;
     background-repeat: no-repeat;
     display: inline-block;
     background-size: 25px 773px;
 }
-.reaction-count span {
+.content .reaction-count span {
     color: #65676b;
 }
-.right-sidebar .top {
+/* ==============================END CONTENT============================== */
+
+/* ==============================BEGIN RIGHT SIDEBAR============================== */
+.right-sidebar .top,
+.right-sidebar .top button i {
     color: #696969;
 }
 .right-sidebar .top span {
@@ -292,6 +310,9 @@ body {
 .right-sidebar .top button:hover {
     background: #e6e6e6;
 }
+.right-sidebar .top button i {
+    font-size: 13px;
+}
 .right-sidebar .contact {
     position: relative;
 }
@@ -300,7 +321,7 @@ body {
     height: 40px;
     border-radius: 50%;
 }
-.online {
+.right-sidebar .online {
     padding: 0 !important;
     width: 10px;
     height: 10px;
@@ -311,3 +332,7 @@ body {
     left: 39px;
     box-shadow: 0px 0px 0px 3px #f0f2f5;
 }
+.right-sidebar .contact:hover .online {
+    box-shadow: 0px 0px 0px 3px #e4e6eb;
+}
+/* ==============================END RIGHT SIDEBAR============================== */
