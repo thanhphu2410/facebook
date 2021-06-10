@@ -20,8 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('full_name')->nullable();
             $table->string('address')->nullable();
             $table->foreignId('province_id')->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('district_id')->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('ward_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('phone')->nullable();
             $table->string('avatar')->nullable();
             $table->string('cover_photo')->nullable();

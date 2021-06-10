@@ -10,26 +10,27 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 
 <body>
     <nav class="shadow-sm navbar navbar-expand-lg navbar-light bg-light header">
-        <a class="navbar-brand fb-logo" href="/">
+        <a class="navbar-brand fb-logo gotohome" href="/">
             <i class="fab fa-facebook"></i>
         </a>
         <form class="form-inline my-2 my-lg-0 seach">
             <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm trên facebook" aria-label="Search">
             <i class="fas fa-search"></i>
         </form>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent"
+            aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navContent">
             <ul class="navbar-nav mr-auto center-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">
+                <li class="nav-item active main-nav" id="home-nav">
+                    <a class="nav-link gotohome" href="/">
                         <i class="fas fa-home"></i>
                     </a>
                 </li>
@@ -57,7 +58,7 @@
         </div>
 
         <div class="d-flex align-items-center">
-            <a href="{{ route('profile', [$current_user->id]) }}">
+            <a class="gotoprofile main-nav" href="{{ route('profile', [$current_user->id]) }}" id="profile-nav">
                 <div class="right-side-nav">
                     <img src="{{ asset('images/avatar.png') }}" class="avatar">
                     <span>{{ $current_user->first_name }}</span>
@@ -78,13 +79,12 @@
         </div>
     </nav>
 
-    <div>
+    <div class="app">
         @yield('content')
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
     </script>
@@ -92,6 +92,7 @@
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
     </script>
     <script src="{{ asset('js/fontawesome.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 
 </html>

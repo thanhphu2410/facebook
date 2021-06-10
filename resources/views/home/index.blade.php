@@ -2,10 +2,12 @@
 @section('content')
     <div class="row">
         <div class="col-3 left-sidebar p-3">
-            <div class="left-item">
-                <img src="{{ asset('images/avatar.png') }}">
-                <span class="pl-2">{{ $current_user->full_name }}</span>
-            </div>
+            <a class="gotoprofile" href="{{ route('profile', [$current_user->id]) }}">
+                <div class="left-item gotoprofile">
+                    <img src="{{ asset('images/avatar.png') }}">
+                    <span class="pl-2">{{ $current_user->full_name }}</span>
+                </div>
+            </a>
 
             <div class="left-item-icon">
                 <img src="{{ asset('images/friends-icon.png') }}">
@@ -76,7 +78,9 @@
                         <div class="col-9 d-flex align-items-center">
                             <img src="{{ asset('images/avatar.png') }}" class="avatar">
                             <div class="ml-3">
-                                <h6>{{ $current_user->full_name }}</h6>
+                                <a class="gotoprofile" href="{{ route('profile', [$current_user->id]) }}">
+                                    <h6>{{ $current_user->full_name }}</h6>
+                                </a>
                                 <span class="time_post mr-1">33 phút</span> <i class="fas fa-globe-europe"></i>
                             </div>
                         </div>

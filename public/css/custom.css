@@ -34,6 +34,9 @@ a:hover {
     text-decoration: none;
     color: black;
 }
+.card {
+    border: 0;
+}
 /* ==============================END SETUP CSS============================== */
 
 /* ==============================BEGIN SCROLLBAR============================== */
@@ -60,7 +63,7 @@ a:hover {
     padding: 5px 10px;
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 100;
 }
 .header .fb-logo i {
     font-size: 40px;
@@ -146,6 +149,10 @@ a:hover {
 .header .right-icon:hover {
     background: #dddde6;
     cursor: pointer;
+}
+#profile-nav.active div {
+    color: #1876f2;
+    background-color: #e7f3ff;
 }
 /* ==============================END HEADER============================== */
 
@@ -367,29 +374,29 @@ a:hover {
     background: -webkit-linear-gradient(to top, #ffffff, #2d2d2d);
     background: linear-gradient(to top, #ffffff, #2d2d2d);
 }
-.profile .cover-photo {
+.profile .cover-avatar .cover-photo {
     position: relative;
 }
-.profile .cover-photo img {
+.profile .cover-avatar .cover-photo img {
     border-radius: 0px 0px 10px 10px;
 }
-.profile .cover-btn {
+.profile .cover-avatar .cover-btn {
     position: absolute;
     bottom: 20px;
     right: 20px;
     z-index: 1;
 }
-.profile .avatar {
+.profile .cover-avatar .avatar {
     position: relative;
     margin-top: -150px;
 }
-.profile .avatar img {
+.profile .cover-avatar .avatar img {
     width: 170px;
     height: 170px;
     border-radius: 50%;
     border: 3px solid white;
 }
-.profile .avatar-btn {
+.profile .cover-avatar .avatar-btn {
     border: 0;
     border-radius: 50%;
     padding: 5px 8px;
@@ -398,10 +405,10 @@ a:hover {
     right: 41%;
     background: #e4e6eb;
 }
-.profile .avatar-btn:hover {
+.profile .cover-avatar .avatar-btn:hover {
     background: #e1e1e1;
 }
-.profile .avatar-btn i {
+.profile .cover-avatar .avatar-btn i {
     font-size: 20px;
 }
 .profile .add-histoy {
@@ -428,5 +435,61 @@ a:hover {
     background: white !important;
     border-radius: 0;
     border-bottom: 3px solid #1877f2 !important;
+}
+.profile .content .introduction button {
+    background: #e4e6eb;
+}
+.profile .content .introduction button:hover {
+    background: #dedfe2;
+}
+.profile .content .my-posts span {
+    font-size: 13px;
+}
+.profile .information .all-images-btn,
+.profile .information .all-friends-btn {
+    font-size: 13px;
+}
+.profile .information .recent-images img {
+    width: 97px;
+    height: 97px;
+    object-fit: cover;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+.profile .information .recent-friends img {
+    width: 91px;
+    height: 91px;
+    object-fit: cover;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+.profile .information .number-of-friends {
+    color: #595959;
+}
+.profile .tab .introduction-tab .card {
+    border-radius: 0;
+}
+.profile .tab .introduction-tab .navigation {
+    border-right: 1px solid #d7d8d8;
+}
+.profile .tab .introduction-tab .navigation a.active {
+    color: #1876f2;
+    background-color: #e7f3ff;
+}
+.profile .tab .introduction-tab .tab-pane .circle-plus {
+    border-radius: 50%;
+    border: 2px solid #1877f2;
+    background: white;
+    padding: 0px 6px;
+}
+.profile .tab .introduction-tab .tab-pane .circle-plus i {
+    font-size: 13px;
+    color: #1876f2;
+}
+.profile .tab .introduction-tab .tab-pane a {
+    color: #1876f2;
+}
+.profile .tab .introduction-tab .tab-pane a:hover {
+    text-decoration: underline;
 }
 /* ==============================END PROFILE============================== */

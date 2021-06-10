@@ -1,8 +1,7 @@
-@extends('layouts.app')
-@section('content')
-    <div class="card profile">
+<div class="profile">
+    <div class="card">
         <div class="d-flex align-items-center justify-content-center cover-avatar">
-            <div class="col-8 text-center">
+            <div class="col-9 text-center">
                 <div class="cover-photo">
                     <img src="{{ asset('images/cover-photo.jpeg') }}" width="100%" height="350">
                     <button type="button" class="btn btn-light cover-btn">
@@ -26,10 +25,12 @@
                 <hr>
                 <div class="d-flex align-items-center justify-content-center">
                     <div>
-                        <button type="button" class="btn btn-light active">Bài viết</button>
+                        <button type="button" class="btn btn-light active" id="myposts-tab"
+                            data-target="{{ route('profile.myposts-tab', [$profile->id]) }}">Bài viết</button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-light">Giới thiệu</button>
+                        <button type="button" class="btn btn-light" id="introduction-tab"
+                            data-target="{{ route('profile.introduction-tab', [$profile->id]) }}">Giới thiệu</button>
                     </div>
                     <div>
                         <button type="button" class="btn btn-light">Bạn bè</button>
@@ -44,4 +45,8 @@
             </div>
         </div>
     </div>
-@endsection
+
+    <div class="tab">
+        @include('profile.tab.my-posts')
+    </div>
+</div>

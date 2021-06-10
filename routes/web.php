@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth'])->group(function () {
-    Route::view('/', 'index');
-    Route::get('/profile/{profile}', 'ProfileController@edit')->name('profile');
+    Route::get('/', 'HomeController@index');
+    Route::get('profile/{profile}', 'ProfileController@edit')->name('profile');
+    Route::get('profile/tab/introduction/{profile}', 'ProfileController@tabIntroduction')->name('profile.introduction-tab');
+    Route::get('profile/tab/myposts/{profile}', 'ProfileController@tabMyPosts')->name('profile.myposts-tab');
+    Route::post('profile/update/{profile}', 'ProfileController@update')->name('profile.update');
 });
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
