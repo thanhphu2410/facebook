@@ -492,4 +492,9 @@ a:hover {
 .profile .tab .introduction-tab .tab-pane a:hover {
     text-decoration: underline;
 }
+.about_places_title {
+    font-size: 15px;
+    font-weight: 300;
+    color: #7b7b7b;
+}
 /* ==============================END PROFILE============================== */

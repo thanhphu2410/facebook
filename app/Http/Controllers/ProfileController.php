@@ -18,8 +18,7 @@ class ProfileController extends Controller
 
     public function tabIntroduction(User $profile)
     {
-        $provinces = Province::all();
-        $html = view('profile.tab.introduction', compact('provinces', 'profile'))->render();
+        $html = view('profile.tab.introduction', compact('profile'))->render();
         return response()->json(['html' => $html]);
     }
 
@@ -32,6 +31,8 @@ class ProfileController extends Controller
     public function update(User $profile)
     {
         $profile->update(request()->all());
-        return response()->json(['success' => request('province_id')]);
+        $view_name = str_replace('_', '.', request('view_name'));
+        $html = view($view_name, compact('profile'))->render();
+        return response()->json(['html' => $html]);
     }
 }

@@ -20,6 +20,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('profile/tab/introduction/{profile}', 'ProfileController@tabIntroduction')->name('profile.introduction-tab');
     Route::get('profile/tab/myposts/{profile}', 'ProfileController@tabMyPosts')->name('profile.myposts-tab');
     Route::post('profile/update/{profile}', 'ProfileController@update')->name('profile.update');
+    Route::get('get-districts', 'AjaxController@getDistricts')->name('get-districts');
+    Route::get('get-wards', 'AjaxController@getWards')->name('get-wards');
 });
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

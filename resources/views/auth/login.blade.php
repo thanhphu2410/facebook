@@ -109,6 +109,7 @@
                                 <div class="small-text-danger mt-2">{{ $message }}</div>
                             @enderror
                         </div>
+
                         <div class="d-flex mb-2">
                             <select class="custom-select mr-2 @error('year') is-invalid @enderror" name="year" id="year"
                                 size="1">
@@ -129,17 +130,18 @@
                         @error('day')
                             <div class="small-text-danger">{{ $message }}</div>
                         @enderror
+                        
                         <div class="dflex mt-3">
                             <div
                                 class="border rounded custom-control custom-radio custom-control-inline py-2 w-30 pl-35">
-                                <input type="radio" id="male" value="male" name="gender" class="custom-control-input"
-                                    {{ old('gender') == 'male' ? 'checked' : '' }}>
+                                <input type="radio" id="male" value="Male" name="gender" class="custom-control-input"
+                                    {{ old('gender') == 'Male' ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="male">Nam</label>
                             </div>
                             <div
                                 class="border rounded custom-control custom-radio custom-control-inline py-2 w-30 pl-35">
-                                <input type="radio" id="female" value="female" name="gender"
-                                    class="custom-control-input" {{ old('gender') == 'female' ? 'checked' : '' }}>
+                                <input type="radio" id="female" value="Female" name="gender"
+                                    class="custom-control-input" {{ old('gender') == 'Female' ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="female">Nữ</label>
                             </div>
                             <div class="border rounded custom-control custom-radio custom-control-inline py-2 pl-35"

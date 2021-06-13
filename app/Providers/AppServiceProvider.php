@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('*', function ($view) {
             $view->with('current_user', auth()->user());
+            $view_name = str_replace('.', '_', $view->getName());
+            $view->with('view_name', $view_name);
         });
 
         view()->composer('auth.login', function ($view) {

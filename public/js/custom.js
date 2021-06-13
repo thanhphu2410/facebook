@@ -3,7 +3,7 @@ function sendAjax(url, selector = ".app") {
     $.ajax({
         async: false,
         url: url,
-        type: "get",
+        type: "GET",
         success: function(data) {
             $(selector).html(data.html);
             result = data;
@@ -20,6 +20,14 @@ function sendAjax(url, selector = ".app") {
 function changeActive(selector_1, selector_2) {
     selector_1.removeClass("active");
     selector_2.addClass("active");
+}
+
+function ajaxSetup() {
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+        }
+    });
 }
 
 $(document).on("click", ".gotohome", function(e) {
@@ -48,23 +56,59 @@ $(document).on("click", "#myposts-tab", function(e) {
     changeActive($(".navigation button"), $(this));
 });
 
-$(document).on("submit", "#about_places_1", function(e) {
+$(document).on("submit", ".profile-update", function(e) {
     e.preventDefault();
     var formData = new FormData($(this)[0]);
-    $.ajaxSetup({
-        headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-        }
-    });
+    let wrapper = $(this).parents(".form-wrapper");
+    ajaxSetup();
     $.ajax({
         url: $(this).attr("action"),
         type: "POST",
         data: formData,
         success: function(data) {
-            
+            wrapper.html(data.html);
         },
         cache: false,
         processData: false,
         contentType: false
+    });
+});
+
+$(document).on("change", "#provinces", function(e) {
+    e.preventDefault();
+    $.ajax({
+        url: $(this).attr("data-target") + "?province_id=" + $(this).val(),
+        type: "GET",
+        success: function(data) {
+            $("#districts").empty().append(
+                "<option value='' selected>Chọn quận/huyện</option>"
+            );
+            $("#wards").empty().append(
+                "<option value='' selected>Chọn phường/xã</option>"
+            );
+            data.forEach(function(item) {
+                $("#districts").append(
+                    "<option value='" + item.id + "'>" + item.name + "</option>"
+                );
+            });
+        }
+    });
+});
+
+$(document).on("change", "#districts", function(e) {
+    e.preventDefault();
+    $.ajax({
+        url: $(this).attr("data-target") + "?district_id=" + $(this).val(),
+        type: "GET",
+        success: function(data) {
+            $("#wards").empty().append(
+                "<option value='' selected>Chọn phường/xã</option>"
+            );
+            data.forEach(function(item) {
+                $("#wards").append(
+                    "<option value='" + item.id + "'>" + item.name + "</option>"
+                );
+            });
+        }
     });
 });

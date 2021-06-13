@@ -65,41 +65,38 @@
             </div>
 
             <div class="tab-pane fade" id="about_work_and_education" role="tabpanel">
-
+                <h1>Hello</h1>
             </div>
 
             <div class="tab-pane fade" id="about_places" role="tabpanel">
                 <div class="mb-4">
                     <h5 class="mb-3">Nơi từng sống</h5>
-                    <button type="button" class="btn btn-light circle-plus">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <a data-toggle="collapse" href="#about_places_1" role="button">
-                        Thêm tỉnh/thành phố hiện tại
-                    </a>
-                    <div class="collapse" id="about_places_1">
-                        <form id="about_places_1" method="post"
-                            action="{{ route('profile.update', [$profile->id]) }}">
-                            @csrf
-                            <div class="mt-3">
-                                <select class="custom-select" name="province_id">
-                                    <option selected>Chọn thành phố</option>
-                                    @foreach ($provinces as $item)
-                                        <option value="{{ $item->id }}"
-                                            {{ $item->id == $profile->province_id ? 'selected' : '' }}>
-                                            {{ $item->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <button type="submit" class="btn btn-light mt-3">Lưu</button>
-                            </div>
-                        </form>
+                    <div class="mb-4 form-wrapper">
+                        @include('profile.form.about-places.current-address')
                     </div>
                 </div>
             </div>
 
             <div class="tab-pane fade" id="about_contact_and_basic_info" role="tabpanel">
-                <h1>day la tab 4</h1>
+                <div class="mb-4">
+                    <h5 class="mb-3">Thông tin liên hệ</h5>
+                    <div class="mb-4 form-wrapper">
+                        @include('profile.form.about-contact-and-basic-info.phone-number')
+                    </div>
+                    <div class="mb-4">
+                        @include('profile.form.about-contact-and-basic-info.email')
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="mb-3">Thông tin cơ bản</h5>
+                    <div class="mb-4 form-wrapper">
+                        @include('profile.form.about-contact-and-basic-info.gender')
+                    </div>
+                    <div class="mb-4">
+                        @include('profile.form.about-contact-and-basic-info.date-of-birth')
+                    </div>
+                </div>
             </div>
         </div>
     </div>

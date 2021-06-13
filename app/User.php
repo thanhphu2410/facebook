@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'last_name', 'first_name', 'full_name', 'address', 'province_id', 'phone',
+        'id', 'last_name', 'first_name', 'full_name', 'province_id', 'district_id', 'ward_id', 'phone', 'address',
         'avatar', 'cover_photo', 'email', 'date_of_birth', 'gender', 'email_verified_at', 'password', 'remember_token'
     ];
 
@@ -37,4 +37,34 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function province()
+    {
+        return $this->belongsTo('App\Models\Province');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo('App\Models\District');
+    }
+
+    public function ward()
+    {
+        return $this->belongsTo('App\Models\Ward');
+    }
+
+    public function getFullAddressAttribute()
+    {
+        $address = array_filter([
+            $this->address,
+            @$this->ward->prefix." ".@$this->ward->name,
+            @$this->district->prefix." ".@$this->district->name,
+            @$this->province->name, 
+            "Việt Nam"
+        ], function ($value) {
+            return !empty(str_replace(' ', '', $value));
+        });
+        
+        return implode(", ", $address);
+    }
 }
