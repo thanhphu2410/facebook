@@ -56,6 +56,48 @@ $(document).on("click", "#myposts-tab", function(e) {
     changeActive($(".navigation button"), $(this));
 });
 
+$(document).on("click", "#add-friend-btn", function(e) {
+    e.preventDefault();
+    let wrapper = $(this).parent("div");
+    $.ajax({
+        url: $(this).attr("data-target"),
+        type: "GET",
+        success: function(data) {
+            wrapper
+                .empty()
+                .append(
+                    '<button type="button" class="btn btn-primary cancel-friend-btn" id="cancel-friend-btn" data-target="' +
+                        data.url +
+                        '">' +
+                        '<i class="fas fa-user-times"></i> ' +
+                        "Huỷ bạn bè" +
+                        "</button>"
+                );
+        }
+    });
+});
+
+$(document).on("click", "#cancel-friend-btn", function(e) {
+    e.preventDefault();
+    let wrapper = $(this).parent("div");
+    $.ajax({
+        url: $(this).attr("data-target"),
+        type: "GET",
+        success: function(data) {
+            wrapper
+                .empty()
+                .append(
+                    '<button type="button" class="btn btn-primary add-friend-btn" id="add-friend-btn" data-target="' +
+                        data.url +
+                        '">' +
+                        '<i class="fas fa-user-plus"></i> ' +
+                        "Thêm bạn bè" +
+                        "</button>"
+                );
+        }
+    });
+});
+
 $(document).on("submit", ".profile-update", function(e) {
     e.preventDefault();
     var formData = new FormData($(this)[0]);
@@ -80,12 +122,12 @@ $(document).on("change", "#provinces", function(e) {
         url: $(this).attr("data-target") + "?province_id=" + $(this).val(),
         type: "GET",
         success: function(data) {
-            $("#districts").empty().append(
-                "<option value='' selected>Chọn quận/huyện</option>"
-            );
-            $("#wards").empty().append(
-                "<option value='' selected>Chọn phường/xã</option>"
-            );
+            $("#districts")
+                .empty()
+                .append("<option value='' selected>Chọn quận/huyện</option>");
+            $("#wards")
+                .empty()
+                .append("<option value='' selected>Chọn phường/xã</option>");
             data.forEach(function(item) {
                 $("#districts").append(
                     "<option value='" + item.id + "'>" + item.name + "</option>"
@@ -101,9 +143,9 @@ $(document).on("change", "#districts", function(e) {
         url: $(this).attr("data-target") + "?district_id=" + $(this).val(),
         type: "GET",
         success: function(data) {
-            $("#wards").empty().append(
-                "<option value='' selected>Chọn phường/xã</option>"
-            );
+            $("#wards")
+                .empty()
+                .append("<option value='' selected>Chọn phường/xã</option>");
             data.forEach(function(item) {
                 $("#wards").append(
                     "<option value='" + item.id + "'>" + item.name + "</option>"

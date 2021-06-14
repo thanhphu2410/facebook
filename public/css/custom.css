@@ -436,6 +436,18 @@ a:hover {
     border-radius: 0;
     border-bottom: 3px solid #1877f2 !important;
 }
+.profile .navigation .add-friend-btn,
+.profile .navigation .add-friend-btn:hover {
+    color: white;
+    background: #1877f2;
+    padding: 6px 16px;
+}
+.profile .navigation .cancel-friend-btn,
+.profile .navigation .cancel-friend-btn:hover {
+    color: rgb(0, 0, 0);
+    background: #e4e6eb;
+    padding: 6px 16px;
+}
 .profile .content .introduction button {
     background: #e4e6eb;
 }

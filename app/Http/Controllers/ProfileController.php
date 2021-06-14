@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Models\Province;
 
 class ProfileController extends Controller
 {
-    public function edit(User $profile)
+    public function show(User $profile)
     {
-        $html = view('profile.edit', compact('profile'))->render();
-        return response()->json([
-            'html' => $html,
-            'isMyProfile' => $profile->id == auth()->id()
-        ]);
+        $auth = auth()->user();
+        $check = ($profile->id == $auth->id) ? 'edit' : 'show';
+        if (request()->ajax()) {
+            $html = view('profile.ajax.'.$check, compact('profile'))->render();
+            return response()->json([
+                'html' => $html,
+                'isMyProfile' => $profile->id == $auth->id
+            ]);
+        }
+        return view('profile.'.$check, compact('profile', 'auth'));
     }
 
     public function tabIntroduction(User $profile)
