@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    @php $fr_helper = fr_helper($profile->id); @endphp
     <div class="profile">
         <div class="card">
             <div class="d-flex align-items-center justify-content-center cover-avatar">
@@ -32,7 +33,7 @@
                             </button>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-light">Bạn bè</button>
+                            <button type="button" class="btn btn-light">Bạn bè <span class="friend-count">{{ $auth->all_friends()->count() }}</span></button>
                         </div>
                         <div>
                             <button type="button" class="btn btn-light">Ảnh</button>
@@ -40,24 +41,29 @@
                         <div>
                             <button type="button" class="btn btn-light">Xem thêm <i class="fas fa-caret-down"></i></button>
                         </div>
-                        <div>
-                            @if ($auth->areFriends($profile->id))
-                                <button type="button" class="btn btn-primary friend-btn" id="add-friend-btn"
-                                    data-target="{{ route('add-friend', [$profile->id]) }}">
-                                    <i class="fas fa-user-plus"></i>
+                        <div id="wrapper-btn">
+                            @if ($fr_helper->areFriends())
+                                <button type="button" class="btn btn-primary friend-btn">
+                                    <i class="fas fa-user-check"></i>
                                     Bạn bè
                                 </button>
-                            @elseif($auth->notAccepted($profile->id))
+                            @elseif($fr_helper->notAccepted())
                                 <button type="button" class="btn btn-primary add-friend-btn" id="response-friend-btn"
                                     data-toggle="dropdown">
                                     <i class="fas fa-user-check"></i>
                                     Phản hồi
                                 </button>
                                 <div class="dropdown-menu shadow-lg border-0" aria-labelledby="response-friend-btn">
-                                    <a class="dropdown-item" href="#">Xác nhận</a>
-                                    <a class="dropdown-item" href="#">Xoá lời mời</a>
+                                    <a class="dropdown-item" href="#"
+                                        data-target="{{ route('accept-friend', [$profile->id]) }}" id="accept-friend">
+                                        Xác nhận
+                                    </a>
+                                    <a class="dropdown-item" href="#"
+                                        data-target="{{ route('cancel-friend', [$profile->id]) }}" id="cancel-friend-btn">
+                                        Xoá lời mời
+                                    </a>
                                 </div>
-                            @elseif($auth->hasAdded($profile->id))
+                            @elseif($fr_helper->hasAdded())
                                 <button type="button" class="btn btn-primary cancel-friend-btn" id="cancel-friend-btn"
                                     data-target="{{ route('cancel-friend', [$profile->id]) }}">
                                     <i class="fas fa-user-times"></i>
@@ -77,7 +83,7 @@
         </div>
 
         <div class="tab">
-            @include('profile.tab.my-posts')
+            @include('profile.show.tab.my-posts')
         </div>
     </div>
 @endsection

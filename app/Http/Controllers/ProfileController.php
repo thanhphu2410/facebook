@@ -8,27 +8,29 @@ class ProfileController extends Controller
 {
     public function show(User $profile)
     {
-        $auth = auth()->user();
+        $auth = $this->auth();
         $check = ($profile->id == $auth->id) ? 'edit' : 'show';
         if (request()->ajax()) {
-            $html = view('profile.ajax.'.$check, compact('profile'))->render();
+            $html = view("profile.ajax.$check", compact('profile'))->render();
             return response()->json([
                 'html' => $html,
                 'isMyProfile' => $profile->id == $auth->id
             ]);
         }
-        return view('profile.'.$check, compact('profile', 'auth'));
+        return view("profile.$check.profile", compact('profile', 'auth'));
     }
 
     public function tabIntroduction(User $profile)
     {
-        $html = view('profile.tab.introduction', compact('profile'))->render();
+        $check = ($profile->id == $this->auth()->id) ? 'edit' : 'show';
+        $html = view("profile.$check.tab.introduction", compact('profile'))->render();
         return response()->json(['html' => $html]);
     }
 
     public function tabMyPosts(User $profile)
     {
-        $html = view('profile.tab.my-posts')->render();
+        $check = ($profile->id == $this->auth()->id) ? 'edit' : 'show';
+        $html = view("profile.$check.tab.my-posts")->render();
         return response()->json(['html' => $html]);
     }
 

@@ -18,7 +18,6 @@
         Thêm số điện thoại
     </a>
 @endif
-
 <div class="collapse" id="{{ $view_name }}_collapse">
     <form class="profile-update" method="post"
         action="{{ route('profile.update', [$profile->id]) }}">

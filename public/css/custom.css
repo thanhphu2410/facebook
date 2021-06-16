@@ -443,7 +443,9 @@ a:hover {
     padding: 6px 16px;
 }
 .profile .navigation .cancel-friend-btn,
-.profile .navigation .cancel-friend-btn:hover {
+.profile .navigation .cancel-friend-btn:hover,
+.profile .navigation .friend-btn,
+.profile .navigation .friend-btn:hover {
     color: rgb(0, 0, 0);
     background: #e4e6eb;
     padding: 6px 16px;
@@ -508,5 +510,9 @@ a:hover {
     font-size: 15px;
     font-weight: 300;
     color: #7b7b7b;
+}
+.friend-count {
+    font-size: 13px;
+    font-weight: 300;
 }
 /* ==============================END PROFILE============================== */

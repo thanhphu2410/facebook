@@ -58,12 +58,11 @@ $(document).on("click", "#myposts-tab", function(e) {
 
 $(document).on("click", "#add-friend-btn", function(e) {
     e.preventDefault();
-    let wrapper = $(this).parent("div");
     $.ajax({
         url: $(this).attr("data-target"),
         type: "GET",
         success: function(data) {
-            wrapper
+            $("#wrapper-btn")
                 .empty()
                 .append(
                     '<button type="button" class="btn btn-primary cancel-friend-btn" id="cancel-friend-btn" data-target="' +
@@ -79,12 +78,11 @@ $(document).on("click", "#add-friend-btn", function(e) {
 
 $(document).on("click", "#cancel-friend-btn", function(e) {
     e.preventDefault();
-    let wrapper = $(this).parent("div");
     $.ajax({
         url: $(this).attr("data-target"),
         type: "GET",
         success: function(data) {
-            wrapper
+            $("#wrapper-btn")
                 .empty()
                 .append(
                     '<button type="button" class="btn btn-primary add-friend-btn" id="add-friend-btn" data-target="' +
@@ -92,6 +90,24 @@ $(document).on("click", "#cancel-friend-btn", function(e) {
                         '">' +
                         '<i class="fas fa-user-plus"></i> ' +
                         "Thêm bạn bè" +
+                        "</button>"
+                );
+        }
+    });
+});
+
+$(document).on("click", "#accept-friend", function(e) {
+    e.preventDefault();
+    $.ajax({
+        url: $(this).attr("href"),
+        type: "GET",
+        success: function(data) {
+            $("#wrapper-btn")
+                .empty()
+                .append(
+                    '<button type="button" class="btn btn-primary friend-btn">' +
+                        '<i class="fas fa-user-check"></i>' +
+                        " Bạn bè" +
                         "</button>"
                 );
         }
@@ -130,7 +146,13 @@ $(document).on("change", "#provinces", function(e) {
                 .append("<option value='' selected>Chọn phường/xã</option>");
             data.forEach(function(item) {
                 $("#districts").append(
-                    "<option value='" + item.id + "'>" + item.name + "</option>"
+                    "<option value='" +
+                        item.id +
+                        "'>" +
+                        item.prefix +
+                        " " +
+                        item.name +
+                        "</option>"
                 );
             });
         }
@@ -148,7 +170,13 @@ $(document).on("change", "#districts", function(e) {
                 .append("<option value='' selected>Chọn phường/xã</option>");
             data.forEach(function(item) {
                 $("#wards").append(
-                    "<option value='" + item.id + "'>" + item.name + "</option>"
+                    "<option value='" +
+                        item.id +
+                        "'>" +
+                        item.prefix +
+                        " " +
+                        item.name +
+                        "</option>"
                 );
             });
         }

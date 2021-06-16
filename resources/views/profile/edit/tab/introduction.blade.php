@@ -72,7 +72,7 @@
                 <div class="mb-4">
                     <h5 class="mb-3">Nơi từng sống</h5>
                     <div class="mb-4 form-wrapper">
-                        @include('profile.form.about-places.current-address')
+                        @include('profile.edit.form.about-places.current-address')
                     </div>
                 </div>
             </div>
@@ -81,20 +81,20 @@
                 <div class="mb-4">
                     <h5 class="mb-3">Thông tin liên hệ</h5>
                     <div class="mb-4 form-wrapper">
-                        @include('profile.form.about-contact-and-basic-info.phone-number')
+                        @include('profile.edit.form.about-contact-and-basic-info.phone-number')
                     </div>
                     <div class="mb-4">
-                        @include('profile.form.about-contact-and-basic-info.email')
+                        @include('profile.edit.form.about-contact-and-basic-info.email')
                     </div>
                 </div>
 
                 <div class="mb-4">
                     <h5 class="mb-3">Thông tin cơ bản</h5>
                     <div class="mb-4 form-wrapper">
-                        @include('profile.form.about-contact-and-basic-info.gender')
+                        @include('profile.edit.form.about-contact-and-basic-info.gender')
                     </div>
                     <div class="mb-4">
-                        @include('profile.form.about-contact-and-basic-info.date-of-birth')
+                        @include('profile.edit.form.about-contact-and-basic-info.date-of-birth')
                     </div>
                 </div>
             </div>

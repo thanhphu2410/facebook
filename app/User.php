@@ -63,30 +63,10 @@ class User extends Authenticatable
     public function all_friends()
     {
         return Friend::where(function (Builder $query) {
-            return $query->where('from', $this->id);
+            return $query->where('from', $this->id)->where('status', 'A');
         })->orWhere(function (Builder $query) {
-            return $query->where('to', $this->id);
+            return $query->where('to', $this->id)->where('status', 'A');
         })->get();
-    }
-
-    public function areFriends($user_id)
-    {
-        return Friend::where(function (Builder $query) use ($user_id) {
-            return $query->where('from', $this->id)->where('to', $user_id)->where('status', 'A');
-        })->orWhere(function (Builder $query) use ($user_id) {
-            return $query->where('from', $user_id)->where('to', $this->id)->where('status', 'A');
-        })->first();
-    }
-
-    public function hasAdded($user_id)
-    {
-        return Friend::where('from', $this->id)->where('to', $user_id)->first();
-    }
-
-    public function notAccepted($user_id)
-    {
-        $check = Friend::where('from', $user_id)->where('to', $this->id)->where('status', 'P')->get();
-        return $check->count() ? true : false;
     }
 
     public function getFullAddressAttribute()
@@ -95,8 +75,7 @@ class User extends Authenticatable
             $this->address,
             @$this->ward->prefix." ".@$this->ward->name,
             @$this->district->prefix." ".@$this->district->name,
-            @$this->province->name,
-            "Việt Nam"
+            @$this->province->name
         ], function ($value) {
             return !empty(str_replace(' ', '', $value));
         });
