@@ -378,6 +378,7 @@ a:hover {
     position: relative;
 }
 .profile .cover-avatar .cover-photo img {
+    object-fit: cover;
     border-radius: 0px 0px 10px 10px;
 }
 .profile .cover-avatar .cover-btn {
@@ -395,6 +396,7 @@ a:hover {
     height: 170px;
     border-radius: 50%;
     border: 3px solid white;
+    object-fit: cover;
 }
 .profile .cover-avatar .avatar-btn {
     border: 0;

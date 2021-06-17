@@ -44,6 +44,6 @@
     </div>
 
     <div class="tab">
-        @include('profile.tab.my-posts')
+        @include('profile.show.tab.my-posts')
     </div>
 </div>

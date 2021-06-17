@@ -55,11 +55,6 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Ward');
     }
 
-    public function friends()
-    {
-        return $this->hasMany('App\Models\Friend', 'from');
-    }
-
     public function all_friends()
     {
         return Friend::where(function (Builder $query) {
@@ -81,5 +76,39 @@ class User extends Authenticatable
         });
         
         return implode(", ", $address);
+    }
+
+    public function getAvatarPathAttribute()
+    {
+        if (file_exists(public_path() . $this->avatar)) {
+            return $this->avatar;
+        }
+        return '/images/avatar.png';
+    }
+    
+    public function getCoverPathAttribute()
+    {
+        if (file_exists(public_path() . $this->cover_photo)) {
+            return $this->cover_photo;
+        }
+        return '/images/cover-photo.jpeg';
+    }
+
+    public function setAvatarAttribute()
+    {
+        if (request()->has('avatar')) {
+            delete_file($this->avatar);
+            $path = store_file(request('avatar'), 'avatar');
+            $this->attributes['avatar'] = '/' . $path;
+        }
+    }
+
+    public function setCoverPhotoAttribute()
+    {
+        if (request()->has('cover_photo')) {
+            delete_file($this->cover_photo);
+            $path = store_file(request('cover_photo'), 'cover-photo');
+            $this->attributes['cover_photo'] = '/' . $path;
+        }
     }
 }

@@ -10,7 +10,8 @@
                 </div>
                 <div class="avatar">
                     <img src="{{ asset('images/avatar.png') }}">
-                    <button type="button" class="btn btn-light avatar-btn">
+                    <input type="file" id="avatar-input" class="d-none">
+                    <button type="button" class="btn btn-light avatar-btn" id="avatar-btn">
                         <i class="fas fa-camera"></i>
                     </button>
                 </div>
@@ -26,11 +27,15 @@
                 <div class="d-flex align-items-center justify-content-center">
                     <div>
                         <button type="button" class="btn btn-light active" id="myposts-tab"
-                            data-target="{{ route('profile.myposts-tab', [$profile->id]) }}">Bài viết</button>
+                            data-target="{{ route('profile.myposts-tab', [$profile->id]) }}">
+                            Bài viết
+                        </button>
                     </div>
                     <div>
                         <button type="button" class="btn btn-light" id="introduction-tab"
-                            data-target="{{ route('profile.introduction-tab', [$profile->id]) }}">Giới thiệu</button>
+                            data-target="{{ route('profile.introduction-tab', [$profile->id]) }}">
+                            Giới thiệu
+                        </button>
                     </div>
                     <div>
                         <button type="button" class="btn btn-light">Bạn bè</button>
@@ -47,6 +52,6 @@
     </div>
 
     <div class="tab">
-        @include('profile.tab.my-posts')
+        @include('profile.edit.tab.my-posts')
     </div>
 </div>

@@ -182,3 +182,67 @@ $(document).on("change", "#districts", function(e) {
         }
     });
 });
+
+$(document).on("click", "#avatar-btn", function(e) {
+    e.preventDefault();
+    $("#avatar-input").click();
+});
+
+$(document).on("change", "#avatar-input", function(e) {
+    e.preventDefault();
+    var file = $("#avatar-input").get(0).files[0];
+    if (file) {
+        var formData = new FormData($(this).parent("form")[0]);
+        ajaxSetup();
+        $.ajax({
+            url: $(this)
+                .parent("form")
+                .attr("action"),
+            type: "POST",
+            data: formData,
+            success: function(data) {},
+            cache: false,
+            processData: false,
+            contentType: false
+        });
+
+        // show preview image
+        var reader = new FileReader();
+        reader.onload = function() {
+            $("#avatar-image").attr("src", reader.result);
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+$(document).on("click", "#cover-btn", function(e) {
+    e.preventDefault();
+    $("#cover-input").click();
+});
+
+$(document).on("change", "#cover-input", function(e) {
+    e.preventDefault();
+    var file = $("#cover-input").get(0).files[0];
+    if (file) {
+        var formData = new FormData($(this).parent("form")[0]);
+        ajaxSetup();
+        $.ajax({
+            url: $(this)
+                .parent("form")
+                .attr("action"),
+            type: "POST",
+            data: formData,
+            success: function(data) {},
+            cache: false,
+            processData: false,
+            contentType: false
+        });
+
+        // show preview image
+        var reader = new FileReader();
+        reader.onload = function() {
+            $("#cover-image").attr("src", reader.result);
+        };
+        reader.readAsDataURL(file);
+    }
+});

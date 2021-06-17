@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -37,8 +38,10 @@ class ProfileController extends Controller
     public function update(User $profile)
     {
         $profile->update(request()->all());
-        $view_name = str_replace('_', '.', request('view_name'));
-        $html = view($view_name, compact('profile'))->render();
-        return response()->json(['html' => $html]);
+        if (request('view_name')) {
+            $view_name = str_replace('_', '.', request('view_name'));
+            $html = view($view_name, compact('profile'))->render();
+        }
+        return response()->json(['html' => $html ?? '']);
     }
 }
