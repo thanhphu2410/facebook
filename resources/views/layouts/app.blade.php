@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/facebook-favicon.ico') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="{{ asset('packages/lightbox/css/lightbox.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
@@ -60,7 +61,7 @@
         <div class="d-flex align-items-center">
             <a class="gotoprofile main-nav" href="{{ route('profile', [$current_user->id]) }}" id="profile-nav">
                 <div class="right-side-nav">
-                    <img src="{{ asset('images/avatar.png') }}" class="avatar">
+                    <img src="{{ $current_user->avatar_path }}" class="avatar">
                     <span>{{ $current_user->first_name }}</span>
                 </div>
             </a>
@@ -91,6 +92,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
     </script>
+    <script src="{{ asset('packages/lightbox/js/lightbox.js') }}"></script>
     <script src="{{ asset('js/fontawesome.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 </body>

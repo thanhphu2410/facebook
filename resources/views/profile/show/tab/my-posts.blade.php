@@ -46,15 +46,15 @@
                 </div>
                 <div class="mt-3 recent-friends row">
                     <div class="col-4 text-center mb-2">
-                        <img src="{{ asset('images/avatar.png') }}" alt="">
+                        <img src="{{ $profile->avatar_path }}" alt="">
                         <h6 class="mt-2">Thanh Phú</h6>
                     </div>
                     <div class="col-4 text-center">
-                        <img src="{{ asset('images/avatar.png') }}" alt="">
+                        <img src="{{ $profile->avatar_path }}" alt="">
                         <h6 class="mt-2">Thanh Phú</h6>
                     </div>
                     <div class="col-4 text-center">
-                        <img src="{{ asset('images/avatar.png') }}" alt="">
+                        <img src="{{ $profile->avatar_path }}" alt="">
                         <h6 class="mt-2">Thanh Phú</h6>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
         <div class="card shadow-sm">
             <div class="card-body">
                 <div class="d-flex align-items-center">
-                    <img src="{{ asset('images/avatar.png') }}" class="avatar">
+                    <img src="{{ $current_user->avatar_path }}" class="avatar">
                     <div class="ml-3 wdut">Bạn đang nghĩ gì?</div>
                 </div>
                 <hr>
@@ -91,7 +91,7 @@
             <div class="card-body p-0">
                 <div class="d-flex align-items-center p-3">
                     <div class="col-9 d-flex align-items-center">
-                        <img src="{{ asset('images/avatar.png') }}" class="avatar">
+                        <img src="{{ $current_user->avatar_path }}" class="avatar">
                         <div class="ml-3">
                             <h6>{{ $current_user->full_name }}</h6>
                             <span class="time_post mr-1">33 phút</span> <i class="fas fa-globe-europe"></i>

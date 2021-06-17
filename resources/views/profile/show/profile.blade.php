@@ -6,10 +6,10 @@
             <div class="d-flex align-items-center justify-content-center cover-avatar">
                 <div class="col-9 text-center">
                     <div class="cover-photo">
-                        <img src="{{ asset('images/cover-photo.jpeg') }}" width="100%" height="350">
+                        <img src="{{ $profile->cover_path }}" width="100%" height="350">
                     </div>
                     <div class="avatar">
-                        <img src="{{ asset('images/avatar.png') }}">
+                        <img src="{{ $profile->avatar_path }}">
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                         </div>
                         <div>
                             <button type="button" class="btn btn-light">Bạn bè
-                                <span class="friend-count">{{ $auth->all_friends()->count() }}</span>
+                                <span class="friend-count">{{ $profile->all_friends()->count() }}</span>
                             </button>
                         </div>
                         <div>

@@ -253,3 +253,74 @@ $(document).on("change", "#cover-input", function(e) {
         reader.readAsDataURL(file);
     }
 });
+
+$("textarea").on("input", function() {
+    this.style.height = "auto";
+    if (this.scrollHeight > 70) this.style.fontSize = "16px";
+
+    if (this.scrollHeight < 250) {
+        this.style.height = this.scrollHeight + "px";
+    } else {
+        this.style.height = "170px";
+    }
+});
+
+$(document).on("click", "#image-path-icon", function(e) {
+    e.preventDefault();
+    $("#image-path-input").click();
+});
+
+$(document).on("change", "#image-path-input", function(e) {
+    e.preventDefault();
+    var files = $("#image-path-input").get(0).files;
+    $("#body-images")
+        .empty()
+        .css("height", "auto")
+        .append('<i class="fas fa-times-circle"></i>');
+    for (i = 0; i < files.length; i++) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            $("#body-images").append(
+                '<img class="mt-1" src="' +
+                    event.target.result +
+                    '" width="100%" height="250">'
+            );
+        };
+        $("#body-images")
+            .css("height", "190px")
+            .css("overflow-y", "scroll");
+        reader.readAsDataURL(files[i]);
+    }
+});
+
+$(document).on("click", "#body-images i", function(e) {
+    $("#body-images")
+        .empty()
+        .css("height", "auto");
+});
+
+$(document).on("submit", "#post_form", function(e) {
+    e.preventDefault();
+    var formData = new FormData($(this)[0]);
+    ajaxSetup();
+    $.ajax({
+        url: $(this).attr("action"),
+        type: "POST",
+        data: formData,
+        success: function(data) {
+            $("#new_post_modal").modal("hide");
+            $("#new_post_modal textarea").val("");
+            $("#body-images")
+                .empty()
+                .css("height", "auto");
+            $("#all_posts").prepend(data.html);
+        },
+        cache: false,
+        processData: false,
+        contentType: false
+    });
+});
+
+$('#new_post_modal').on('shown.bs.modal', function() {
+    $(this).find('textarea[name="body"]').focus();
+});

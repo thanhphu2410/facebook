@@ -5,7 +5,8 @@
             <div class="d-flex align-items-center justify-content-center cover-avatar">
                 <div class="col-9 text-center">
                     <div class="cover-photo">
-                        <form action="{{ route('profile.update', [$profile->id]) }}" method="post">
+                        <form action="{{ route('profile.update', [$profile->id]) }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             <img src="{{ $profile->cover_path }}" width="100%" height="350" id="cover-image">
                             <input type="file" id="cover-input" class="d-none" accept='image/*' name="cover_photo">
@@ -26,10 +27,12 @@
                     </div>
                 </div>
             </div>
+
             <div class="text-center">
                 <h2 class="mt-3 mb-2">{{ $profile->full_name }}</h2>
                 <a href="#" class="add-histoy">Thêm tiểu sử</a>
             </div>
+
             <div class="d-flex align-items-center justify-content-center navigation">
                 <div class="col-7">
                     <hr>

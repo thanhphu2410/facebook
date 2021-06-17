@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('accept-friend/{user}', 'FriendController@accept')->name('accept-friend');
     Route::get('get-districts', 'AjaxController@getDistricts')->name('get-districts');
     Route::get('get-wards', 'AjaxController@getWards')->name('get-wards');
+    Route::resource('posts', 'PostController');
 });
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

@@ -1,12 +1,13 @@
+@php $fr_helper = fr_helper($profile->id); @endphp
 <div class="profile">
     <div class="card">
         <div class="d-flex align-items-center justify-content-center cover-avatar">
             <div class="col-9 text-center">
                 <div class="cover-photo">
-                    <img src="{{ asset('images/cover-photo.jpeg') }}" width="100%" height="350">
+                    <img src="{{ $profile->cover_path }}" width="100%" height="350">
                 </div>
                 <div class="avatar">
-                    <img src="{{ asset('images/avatar.png') }}">
+                    <img src="{{ $profile->avatar_path }}">
                 </div>
             </div>
         </div>
@@ -30,13 +31,53 @@
                         </button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-light">Bạn bè</button>
+                        <button type="button" class="btn btn-light">Bạn bè
+                            <span class="friend-count">{{ $profile->all_friends()->count() }}</span>
+                        </button>
                     </div>
                     <div>
                         <button type="button" class="btn btn-light">Ảnh</button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-light">Xem thêm <i class="fas fa-caret-down"></i></button>
+                        <button type="button" class="btn btn-light">Xem thêm <i
+                                class="fas fa-caret-down"></i></button>
+                    </div>
+                    <div id="wrapper-btn">
+                        @if ($fr_helper->areFriends())
+                            <button type="button" class="btn btn-primary friend-btn">
+                                <i class="fas fa-user-check"></i>
+                                Bạn bè
+                            </button>
+                        @elseif($fr_helper->notAccepted())
+                            <button type="button" class="btn btn-primary add-friend-btn" id="response-friend-btn"
+                                data-toggle="dropdown">
+                                <i class="fas fa-user-check"></i>
+                                Phản hồi
+                            </button>
+                            <div class="dropdown-menu shadow-lg border-0" aria-labelledby="response-friend-btn">
+                                <a class="dropdown-item" href="#"
+                                    data-target="{{ route('accept-friend', [$profile->id]) }}" id="accept-friend">
+                                    Xác nhận
+                                </a>
+                                <a class="dropdown-item" href="#"
+                                    data-target="{{ route('cancel-friend', [$profile->id]) }}"
+                                    id="cancel-friend-btn">
+                                    Xoá lời mời
+                                </a>
+                            </div>
+                        @elseif($fr_helper->hasAdded())
+                            <button type="button" class="btn btn-primary cancel-friend-btn" id="cancel-friend-btn"
+                                data-target="{{ route('cancel-friend', [$profile->id]) }}">
+                                <i class="fas fa-user-times"></i>
+                                Huỷ bạn bè
+                            </button>
+                        @else
+                            <button type="button" class="btn btn-primary add-friend-btn" id="add-friend-btn"
+                                data-target="{{ route('add-friend', [$profile->id]) }}">
+                                <i class="fas fa-user-plus"></i>
+                                Thêm bạn bè
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -55,6 +55,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Ward');
     }
 
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
+
     public function all_friends()
     {
         return Friend::where(function (Builder $query) {
@@ -62,6 +67,20 @@ class User extends Authenticatable
         })->orWhere(function (Builder $query) {
             return $query->where('to', $this->id)->where('status', 'A');
         })->get();
+    }
+
+    public function all_ids_friends()
+    {
+        $results = [];
+        foreach ($this->all_friends() as $friend) {
+            if (!in_array($friend->from, $results)) {
+                $results[] = $friend->from;
+            }
+            if (!in_array($friend->to, $results)) {
+                $results[] = $friend->to;
+            }
+        }
+        return $results;
     }
 
     public function getFullAddressAttribute()

@@ -322,6 +322,67 @@ a:hover {
 .content .reaction-count span {
     color: #65676b;
 }
+#new_post_modal .avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+#new_post_modal #body-images {
+    position: relative;
+}
+#new_post_modal #body-images img {
+    object-fit: cover;
+}
+#new_post_modal #body-images i {
+    position: absolute;
+    right: 7px;
+    top: 14px;
+    border-radius: 50%;
+    padding: 2px 9px;
+    color: white;
+}
+#new_post_modal #body-images i:hover {
+    cursor: pointer;
+}
+#new_post_modal textarea {
+    margin-top: 10px;
+    border: none;
+    width: 100%;
+    resize: none;
+    font-size: 20px;
+}
+#new_post_modal textarea:focus {
+    border: none;
+    outline: none;
+}
+#new_post_modal textarea::placeholder {
+    font-size: 23px;
+    color: #8a8a8a;
+}
+#new_post_modal .icons button {
+    border: 0;
+    background: none;
+    border-radius: 50%;
+}
+#new_post_modal .image-video {
+    height: 24px;
+    width: 24px;
+    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/o_ZVgwOOetZ.png);
+    background-position: 0px -125px;
+    background-size: 25px 333px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+#new_post_modal .tags {
+    height: 24px;
+    width: 24px;
+    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/o_ZVgwOOetZ.png);
+    background-position: 0px -125px;
+    background-size: 25px 333px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
 /* ==============================END CONTENT============================== */
 
 /* ==============================BEGIN RIGHT SIDEBAR============================== */
@@ -508,12 +569,12 @@ a:hover {
 .profile .tab .introduction-tab .tab-pane a:hover {
     text-decoration: underline;
 }
-.about_places_title {
+.profile .about_places_title {
     font-size: 15px;
     font-weight: 300;
     color: #7b7b7b;
 }
-.friend-count {
+.profile .friend-count {
     font-size: 13px;
     font-weight: 300;
 }
