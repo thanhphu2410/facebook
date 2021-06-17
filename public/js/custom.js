@@ -30,10 +30,16 @@ function ajaxSetup() {
     });
 }
 
+function changeAddressBar(url) {
+    var obj = { Page: "Facebook", Url: url };
+    history.pushState(obj, obj.Page, obj.Url);
+}
+
 $(document).on("click", ".gotohome", function(e) {
     e.preventDefault();
     sendAjax("/");
     changeActive($(".main-nav"), $("#home-nav"));
+    changeAddressBar("/");
 });
 
 $(document).on("click", ".gotoprofile", function(e) {
@@ -42,6 +48,7 @@ $(document).on("click", ".gotoprofile", function(e) {
     if (result.isMyProfile) {
         changeActive($(".main-nav"), $("#profile-nav"));
     }
+    changeAddressBar($(this).attr("href"));
 });
 
 $(document).on("click", "#introduction-tab", function(e) {
@@ -99,7 +106,7 @@ $(document).on("click", "#cancel-friend-btn", function(e) {
 $(document).on("click", "#accept-friend", function(e) {
     e.preventDefault();
     $.ajax({
-        url: $(this).attr("href"),
+        url: $(this).attr("data-target"),
         type: "GET",
         success: function(data) {
             $("#wrapper-btn")
