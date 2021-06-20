@@ -40,7 +40,7 @@
                         @endif
                         <button type="submit" class="btn btn-primary btn-lg w-100 font-weight-bold">Đăng nhập</button>
                         <div class="text-center mt-3">
-                            <a href="#" class="forget-pwd-a">Quên mật khẩu?</a>
+                            <a href="/password/reset" class="forget-pwd-a">Quên mật khẩu?</a>
                         </div>
                         <hr>
                         <div class="text-center p-2">

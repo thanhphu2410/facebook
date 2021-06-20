@@ -69,35 +69,37 @@ a:hover {
     font-size: 40px;
     color: #0e8bf1;
 }
-.header .seach {
+.header .search {
     position: relative;
 }
-.header .seach input {
+.header .search input {
     border-radius: 20px;
     width: 240px !important;
     background: #f0f2f5;
     border: none;
+    z-index: 10;
 }
-.header .seach input:focus {
+.header .search input:focus {
     box-shadow: none;
     border: none;
     background: #f0f2f5;
 }
-.header .seach input::placeholder {
+.header .search input::placeholder {
     padding-left: 20px;
     font-size: 15px;
 }
-.header .seach input:focus ~ i {
+.header .search input:focus ~ i {
     display: none;
     padding-left: 0;
 }
-.header .seach input:focus::placeholder {
+.header .search input:focus::placeholder {
     padding-left: 0;
 }
-.header .seach i {
+.header .search i {
     position: absolute;
     left: 10px;
     color: #888888;
+    z-index: 10;
 }
 .header .center-nav {
     padding-left: 10px;
@@ -168,7 +170,8 @@ a:hover {
     margin-bottom: 10px;
 }
 .left-sidebar .left-item-icon,
-.right-sidebar .contact {
+.right-sidebar .contact,
+.search-profile .contact {
     padding: 5px 10px;
     border-radius: 5px;
     height: 50px;
@@ -178,7 +181,8 @@ a:hover {
 }
 .left-sidebar .left-item:hover,
 .left-sidebar .left-item-icon:hover,
-.right-sidebar .contact:hover {
+.right-sidebar .contact:hover,
+.search-profile .contact:hover {
     background: #e4e6eb;
     cursor: pointer;
 }
@@ -187,7 +191,8 @@ a:hover {
     color: #0e8bf1;
 }
 .left-sidebar .left-item-icon span,
-.right-sidebar .contact span {
+.right-sidebar .contact span,
+.search-profile .contact span {
     padding-left: 14px;
 }
 /* ==============================END LETF SIDEBAR============================== */
@@ -405,10 +410,12 @@ a:hover {
 .right-sidebar .top button i {
     font-size: 13px;
 }
-.right-sidebar .contact {
+.right-sidebar .contact,
+.search-profile .contact {
     position: relative;
 }
-.right-sidebar .contact img {
+.right-sidebar .contact img,
+.search-profile .contact img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -579,3 +586,25 @@ a:hover {
     font-weight: 300;
 }
 /* ==============================END PROFILE============================== */
+
+.search-profile {
+    position: absolute;
+    top: -13px;
+    left: -66px;
+    width: 315px;
+    display: none;
+}
+
+.search-profile #exit-search-icon {
+    left: 25px !important;
+    top: 21px;
+    font-size: 19px;
+}
+
+.search-profile #exit-search-icon:hover {
+    cursor: pointer;
+}
+
+.search-profile .not-found-text {
+    color: #888888;
+}

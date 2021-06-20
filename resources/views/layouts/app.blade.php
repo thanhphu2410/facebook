@@ -19,9 +19,11 @@
         <a class="navbar-brand fb-logo gotohome" href="/">
             <i class="fab fa-facebook"></i>
         </a>
-        <form class="form-inline my-2 my-lg-0 seach">
-            <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm trên facebook" aria-label="Search">
-            <i class="fas fa-search"></i>
+        <form class="form-inline my-2 my-lg-0 search">
+            <input class="form-control mr-sm-2" type="search" data-target="{{ route('get-profiles') }}"
+            placeholder="Tìm kiếm trên facebook" aria-label="Search" id="search-profile-input">
+            <i class="fas fa-search" id="search-icon"></i>
+            @include('search.search-profile')
         </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent"
             aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">

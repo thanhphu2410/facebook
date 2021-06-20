@@ -7,6 +7,7 @@ function sendAjax(url, selector = ".app") {
         success: function(data) {
             $(selector).html(data.html);
             result = data;
+            $(window).scrollTop(0);
         },
         error: function(e) {
             if (e.status == 401) {
@@ -321,6 +322,38 @@ $(document).on("submit", "#post_form", function(e) {
     });
 });
 
-$('#new_post_modal').on('shown.bs.modal', function() {
-    $(this).find('textarea[name="body"]').focus();
+$("#new_post_modal").on("shown.bs.modal", function() {
+    $(this)
+        .find('textarea[name="body"]')
+        .focus();
+});
+
+$(document).on("focus", "#search-profile-input", function(e) {
+    e.preventDefault();
+    $(this)
+        .siblings(".search-profile")
+        .css("display", "block");
+    $("#search-icon").css("display", "none");
+});
+
+$(document).on(
+    "click",
+    ".app, .gotoprofile, #navContent, #exit-search-icon",
+    function(e) {
+        e.preventDefault();
+        $(".search-profile").css("display", "none");
+        $("#search-profile-input").val("");
+        $("#search-icon").css("display", "block");
+    }
+);
+
+$(document).on("keyup", "#search-profile-input", function(e) {
+    e.preventDefault();
+    $.ajax({
+        url: $(this).attr("data-target") + "?name=" + $(this).val(),
+        type: "GET",
+        success: function(data) {
+            $("#search-list-wrapper").html(data.html);
+        }
+    });
 });

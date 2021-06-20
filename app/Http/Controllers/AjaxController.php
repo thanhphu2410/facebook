@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Models\District;
 use App\Models\Province;
 
@@ -19,5 +20,16 @@ class AjaxController extends Controller
         $district = District::find(request('district_id'));
         $district->load('wards');
         return response()->json($district->wards);
+    }
+
+    public function getProfiles()
+    {
+        $name = request('name');
+        $profiles = User::where('full_name', 'LIKE', '%'.$name.'%')->where('id', '!=', $this->auth()->id)->get();
+        if (empty($name)) {
+            $profiles = [];
+        }
+        $html = view('search.list-result', compact('profiles'))->render();
+        return response()->json(['html' => $html]);
     }
 }
