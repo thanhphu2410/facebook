@@ -69,7 +69,7 @@ class User extends Authenticatable
         })->get();
     }
 
-    public function all_ids_friends()
+    public function allFriendIds()
     {
         $results = [];
         foreach ($this->all_friends() as $friend) {

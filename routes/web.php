@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('get-districts', 'AjaxController@getDistricts')->name('get-districts');
     Route::get('get-wards', 'AjaxController@getWards')->name('get-wards');
     Route::get('get-profiles', 'AjaxController@getProfiles')->name('get-profiles');
+    Route::get('load-more-posts', 'AjaxController@getMorePosts');
     Route::resource('posts', 'PostController');
 });
 Auth::routes();

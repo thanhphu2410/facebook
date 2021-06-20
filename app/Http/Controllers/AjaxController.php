@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Models\Post;
 use App\Models\District;
 use App\Models\Province;
 
 class AjaxController extends Controller
 {
+    public function __construct()
+    {
+        $this->post = new Post();
+    }
+    
     public function getDistricts()
     {
         $province = Province::find(request('province_id'));
@@ -30,6 +36,20 @@ class AjaxController extends Controller
             $profiles = [];
         }
         $html = view('search.list-result', compact('profiles'))->render();
+        return response()->json(['html' => $html]);
+    }
+
+    public function getMorePosts()
+    {
+        $posts = $this->post->get_posts([
+            'user_ids' => $this->auth()->allFriendIds(),
+            'offset' => request('offset'),
+            'take' => request('take')
+        ]);
+        $html = "";
+        foreach ($posts as $item) {
+            $html .= view('home.post', compact('item'))->render();
+        }
         return response()->json(['html' => $html]);
     }
 }

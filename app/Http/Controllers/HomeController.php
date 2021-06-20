@@ -6,10 +6,14 @@ use App\Models\Post;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->post = new Post();
+    }
+
     public function index()
     {
-        $friend_ids = $this->auth()->all_ids_friends();
-        $posts = Post::whereIn('user_id', $friend_ids)->latest()->get();
+        $posts = $this->post->get_posts(['user_ids' => $this->auth()->allFriendIds()]);
         if (request()->ajax()) {
             $html = view('home.ajax-index', compact('posts'))->render();
             return response()->json(['html' => $html]);

@@ -28,6 +28,8 @@
     </div>
 
     <div id="all_posts">
+        <input type="hidden" value="10" id="take_val">
+        <input type="hidden" value="5" id="offset_val">
         @foreach ($posts as $item)
             @include('home.post')
         @endforeach

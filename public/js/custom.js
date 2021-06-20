@@ -268,6 +268,7 @@ $("textarea").on("input", function() {
 
 $(document).on("click", "#image-path-icon", function(e) {
     e.preventDefault();
+    console.log("hihi");
     $("#image-path-input").click();
 });
 
@@ -311,6 +312,7 @@ $(document).on("submit", "#post_form", function(e) {
         success: function(data) {
             $("#new_post_modal").modal("hide");
             $("#new_post_modal textarea").val("");
+            $("#image-path-input").val("");
             $("#body-images")
                 .empty()
                 .css("height", "auto");
@@ -339,8 +341,7 @@ $(document).on("focus", "#search-profile-input", function(e) {
 $(document).on(
     "click",
     ".app, .gotoprofile, #navContent, #exit-search-icon",
-    function(e) {
-        e.preventDefault();
+    function() {
         $(".search-profile").css("display", "none");
         $("#search-profile-input").val("");
         $("#search-icon").css("display", "block");
@@ -356,4 +357,21 @@ $(document).on("keyup", "#search-profile-input", function(e) {
             $("#search-list-wrapper").html(data.html);
         }
     });
+});
+
+$(window).on("scroll", function(e) {
+    e.preventDefault();
+    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+        let take = parseInt($("#take_val").val());
+        let offset = parseInt($("#offset_val").val());
+        $.ajax({
+            url: "/load-more-posts?take=" + take + "&offset=" + offset,
+            type: "GET",
+            success: function(data) {
+                $("#take_val").val(take + 10);
+                $("#offset_val").val(offset + 10);
+                $("#all_posts").append(data.html);
+            }
+        });
+    }
 });
