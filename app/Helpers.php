@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\HasLiked;
 use App\Services\FriendHelper;
 use Illuminate\Support\Facades\File;
 
@@ -7,6 +8,13 @@ if (! function_exists('fr_helper')) {
     function fr_helper($user_id = 0)
     {
         return new FriendHelper($user_id);
+    }
+}
+
+if (! function_exists('has_liked')) {
+    function has_liked($post_id)
+    {
+        return (new HasLiked($post_id))->execute();
     }
 }
 

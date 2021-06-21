@@ -375,3 +375,45 @@ $(window).on("scroll", function(e) {
         });
     }
 });
+
+$(document).on("click", ".unlike", function(e) {
+    e.preventDefault();
+    let that = $(this);
+    ajaxSetup();
+    $.ajax({
+        url: "/like/" + $(this).attr("data-id"),
+        type: "POST",
+        data: {},
+        success: function(data) {
+            that.addClass("like");
+            that.removeClass("unlike");
+            that.closest(".reaction")
+                .find("#like_counter")
+                .text(data.likes);
+        },
+        cache: false,
+        processData: false,
+        contentType: false
+    });
+});
+
+$(document).on("click", ".like", function(e) {
+    e.preventDefault();
+    let that = $(this);
+    ajaxSetup();
+    $.ajax({
+        url: "/unlike/" + $(this).attr("data-id"),
+        type: "POST",
+        data: {},
+        success: function(data) {
+            that.addClass("unlike");
+            that.removeClass("like");
+            that.closest(".reaction")
+                .find("#like_counter")
+                .text(data.likes);
+        },
+        cache: false,
+        processData: false,
+        contentType: false
+    });
+});

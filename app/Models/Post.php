@@ -17,6 +17,11 @@ class Post extends Model
     {
         return $this->hasMany('App\Models\PostImage');
     }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Models\Like');
+    }
     
     public function scopeUserIds($query, $user_ids)
     {

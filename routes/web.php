@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('get-wards', 'AjaxController@getWards')->name('get-wards');
     Route::get('get-profiles', 'AjaxController@getProfiles')->name('get-profiles');
     Route::get('load-more-posts', 'AjaxController@getMorePosts');
+    Route::post('like/{post}', 'LikeController@store');
+    Route::post('unlike/{post}', 'LikeController@destroy');
     Route::resource('posts', 'PostController');
 });
 Auth::routes();

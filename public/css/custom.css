@@ -257,6 +257,7 @@ a:hover {
 .content .image-video:hover,
 .content .activity:hover,
 .content .reaction .like:hover,
+.content .reaction .unlike:hover,
 .content .reaction .comment:hover,
 .content .reaction .share:hover {
     background: #f2f2f5;
@@ -289,6 +290,7 @@ a:hover {
     object-fit: cover;
 }
 .content .reaction .like,
+.content .reaction .unlike,
 .content .reaction .comment,
 .content .reaction .share {
     padding: 3px;
@@ -299,13 +301,20 @@ a:hover {
     color: #5d5d5d;
 }
 .content .reaction .like span,
+.content .reaction .unlike span,
 .content .reaction .comment span,
 .content .reaction .share span {
     vertical-align: text-bottom;
 }
-.content .reaction .like i {
+.content .reaction .unlike i {
     background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/o8M3gMjyxwj.png");
     background-position: 0 -147px;
+}
+.content .reaction .like i {
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yi/r/gXzy9F5D-BH.png");
+    background-position: 0px -262px;
+    background-size: 25px 920px !important;
+    filter: opacity(0.5) drop-shadow(0 0 0 DodgerBlue);
 }
 .content .reaction .comment i {
     background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/o8M3gMjyxwj.png");
@@ -316,6 +325,7 @@ a:hover {
     background-position: 0 -166px;
 }
 .content .reaction .like i,
+.content .reaction .unlike i,
 .content .reaction .comment i,
 .content .reaction .share i {
     width: 18px;
