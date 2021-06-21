@@ -37,15 +37,15 @@
                 </div>
                 <div class="mt-3 recent-friends row">
                     <div class="col-4 text-center mb-2">
-                        <img src="{{ $current_user->avatar_path }}" alt="">
+                        <img src="{{ $profile->avatar_path }}" alt="">
                         <h6 class="mt-2">Thanh Phú</h6>
                     </div>
                     <div class="col-4 text-center">
-                        <img src="{{ $current_user->avatar_path }}" alt="">
+                        <img src="{{ $profile->avatar_path }}" alt="">
                         <h6 class="mt-2">Thanh Phú</h6>
                     </div>
                     <div class="col-4 text-center">
-                        <img src="{{ $current_user->avatar_path }}" alt="">
+                        <img src="{{ $profile->avatar_path }}" alt="">
                         <h6 class="mt-2">Thanh Phú</h6>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
         <div class="card shadow-sm">
             <div class="card-body">
                 <div class="d-flex align-items-center">
-                    <img src="{{ $current_user->avatar_path }}" class="avatar">
+                    <img src="{{ $profile->avatar_path }}" class="avatar">
                     <div class="ml-3 wdut">Bạn đang nghĩ gì?</div>
                 </div>
                 <hr>
@@ -79,7 +79,7 @@
             </div>
         </div>
 
-        <div id="all_posts">
+        <div id="all_posts" data-target="{{ $profile->id }}">
             <input type="hidden" value="10" id="take_val">
             <input type="hidden" value="5" id="offset_val">
             @foreach ($posts as $item)

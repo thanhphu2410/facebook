@@ -364,8 +364,10 @@ $(window).on("scroll", function(e) {
     if ($(window).scrollTop() == $(document).height() - $(window).height()) {
         let take = parseInt($("#take_val").val());
         let offset = parseInt($("#offset_val").val());
+        let forWho = $("#all_posts").attr("data-target");
+        console.log(forWho);
         $.ajax({
-            url: "/load-more-posts?take=" + take + "&offset=" + offset,
+            url: "/load-more-posts?take=" + take + "&offset=" + offset + "&for=" + forWho,
             type: "GET",
             success: function(data) {
                 $("#take_val").val(take + 10);

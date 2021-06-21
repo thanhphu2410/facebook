@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div id="all_posts">
+    <div id="all_posts" data-target="{{ implode(",", $current_user->allFriendIds()) }}">
         <input type="hidden" value="10" id="take_val">
         <input type="hidden" value="5" id="offset_val">
         @foreach ($posts as $item)

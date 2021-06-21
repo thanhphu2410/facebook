@@ -42,7 +42,7 @@ class AjaxController extends Controller
     public function getMorePosts()
     {
         $posts = $this->post->get_posts([
-            'user_ids' => $this->auth()->allFriendIds(),
+            'user_ids' => explode(",", request('for')),
             'offset' => request('offset'),
             'take' => request('take')
         ]);
