@@ -1,4 +1,13 @@
+function waitBody() {
+    $("body").addClass("wait");
+}
+
+function unwaitBody() {
+    $("body").removeClass("wait");
+}
+
 function sendAjax(url, selector = ".app") {
+    waitBody();
     let result;
     $.ajax({
         async: false,
@@ -8,6 +17,7 @@ function sendAjax(url, selector = ".app") {
             $(selector).html(data.html);
             result = data;
             $(window).scrollTop(0);
+            unwaitBody();
         },
         error: function(e) {
             if (e.status == 401) {
@@ -303,6 +313,7 @@ $(document).on("click", "#body-images i", function(e) {
 
 $(document).on("submit", "#post_form", function(e) {
     e.preventDefault();
+    waitBody();
     var formData = new FormData($(this)[0]);
     ajaxSetup();
     $.ajax({
@@ -317,6 +328,7 @@ $(document).on("submit", "#post_form", function(e) {
                 .empty()
                 .css("height", "auto");
             $("#all_posts").prepend(data.html);
+            unwaitBody();
         },
         cache: false,
         processData: false,
@@ -367,7 +379,13 @@ $(window).on("scroll", function(e) {
         let forWho = $("#all_posts").attr("data-target");
         console.log(forWho);
         $.ajax({
-            url: "/load-more-posts?take=" + take + "&offset=" + offset + "&for=" + forWho,
+            url:
+                "/load-more-posts?take=" +
+                take +
+                "&offset=" +
+                offset +
+                "&for=" +
+                forWho,
             type: "GET",
             success: function(data) {
                 $("#take_val").val(take + 10);
