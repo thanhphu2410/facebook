@@ -11,6 +11,7 @@
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link href="{{ asset('packages/lightbox/css/lightbox.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/messenger.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 
@@ -21,7 +22,7 @@
         </a>
         <form class="form-inline my-2 my-lg-0 search">
             <input class="form-control mr-sm-2" type="search" data-target="{{ route('get-profiles') }}"
-            placeholder="Tìm kiếm trên facebook" aria-label="Search" id="search-profile-input">
+                placeholder="Tìm kiếm trên facebook" aria-label="Search" id="search-profile-input">
             <i class="fas fa-search" id="search-icon"></i>
             @include('search.search-profile')
         </form>
@@ -70,8 +71,9 @@
             <div class="right-icon">
                 <i class="fas fa-plus"></i>
             </div>
-            <div class="right-icon">
+            <div class="right-icon messenger-icon">
                 <i class="fab fa-facebook-messenger"></i>
+                @include('messenger.list')
             </div>
             <div class="right-icon">
                 <i class="fas fa-bell"></i>
@@ -83,6 +85,7 @@
     </nav>
 
     <div class="app">
+        @include('messenger.item')
         @yield('content')
     </div>
 

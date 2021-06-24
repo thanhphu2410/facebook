@@ -265,7 +265,7 @@ $(document).on("change", "#cover-input", function(e) {
     }
 });
 
-$("textarea").on("input", function() {
+$(document).on("input", "#post_form textarea", function() {
     this.style.height = "auto";
     if (this.scrollHeight > 70) this.style.fontSize = "16px";
 
@@ -436,4 +436,20 @@ $(document).on("click", ".like", function(e) {
         processData: false,
         contentType: false
     });
+});
+
+$(document).on("input", "#input_message", function() {
+    let minHeight = parseInt($(".message").css("min-height"));
+    let oldHeight = parseInt(this.style.height || 44);
+    this.style.height = "auto";
+
+    if (this.scrollHeight > 70) this.style.fontSize = "14px";
+    if (this.scrollHeight < 116) {
+        this.style.height = this.scrollHeight + "px";
+    } else {
+        this.style.height = "116px";
+    }
+
+    let newHeight = parseInt(this.style.height || 44);
+    $(".message").css("min-height", minHeight - (newHeight - oldHeight) + "px");
 });
