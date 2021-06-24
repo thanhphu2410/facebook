@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\IndividualChat;
 
 class HomeController extends Controller
 {
@@ -13,11 +14,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        $posts = $this->post->get_posts(['user_ids' => $this->auth()->allFriendIds()]);
+        $posts = $this->post->get_posts(['user_ids' => auth()->user()->allFriendIds()]);
+        $messages = IndividualChat::all();
         if (request()->ajax()) {
             $html = view('home.ajax-index', compact('posts'))->render();
             return response()->json(['html' => $html]);
         }
-        return view('home.index', compact('posts'));
+        return view('home.index', compact('posts', 'messages'));
     }
 }

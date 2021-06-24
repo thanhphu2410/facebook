@@ -62,7 +62,7 @@
     bottom: 0;
     right: 50px;
     width: 328px;
-    z-index: 1000;
+    z-index: 1;
     height: 455px;
 }
 .messenger-item-wrapper .contact img {
@@ -73,7 +73,10 @@
     margin-bottom: 0;
 }
 .messenger-item-wrapper .message {
-    min-height: 345px;
+    /* min-height: 345px; */
+    height: 345px;
+    overflow-y: scroll;
+    
 }
 .message .left-message img {
     width: 30px;

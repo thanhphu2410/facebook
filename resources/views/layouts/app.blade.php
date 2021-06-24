@@ -73,7 +73,7 @@
             </div>
             <div class="right-icon messenger-icon">
                 <i class="fab fa-facebook-messenger"></i>
-                @include('messenger.list')
+                @include('messenger.index')
             </div>
             <div class="right-icon">
                 <i class="fas fa-bell"></i>
@@ -85,7 +85,6 @@
     </nav>
 
     <div class="app">
-        @include('messenger.item')
         @yield('content')
     </div>
 

@@ -14,7 +14,7 @@ class ProfileController extends Controller
     
     public function show(User $profile)
     {
-        $auth = $this->auth();
+        $auth = auth()->user();
         $check = ($profile->id == $auth->id) ? 'edit' : 'show';
         $posts = $this->post->get_posts(['user_ids' => [$profile->id]]);
         if (request()->ajax()) {
@@ -29,14 +29,14 @@ class ProfileController extends Controller
 
     public function tabIntroduction(User $profile)
     {
-        $check = ($profile->id == $this->auth()->id) ? 'edit' : 'show';
+        $check = ($profile->id == auth()->id()) ? 'edit' : 'show';
         $html = view("profile.$check.tab.introduction", compact('profile'))->render();
         return response()->json(['html' => $html]);
     }
 
     public function tabMyPosts(User $profile)
     {
-        $check = ($profile->id == $this->auth()->id) ? 'edit' : 'show';
+        $check = ($profile->id == auth()->id()) ? 'edit' : 'show';
         $posts = $this->post->get_posts(['user_ids' => [$profile->id]]);
         $html = view("profile.$check.tab.my-posts", compact('profile', 'posts'))->render();
         return response()->json(['html' => $html]);

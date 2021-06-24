@@ -31,7 +31,7 @@ class AjaxController extends Controller
     public function getProfiles()
     {
         $name = request('name');
-        $profiles = User::where('full_name', 'LIKE', '%'.$name.'%')->where('id', '!=', $this->auth()->id)->get();
+        $profiles = User::where('full_name', 'LIKE', '%'.$name.'%')->where('id', '!=', auth()->id())->get();
         if (empty($name)) {
             $profiles = [];
         }

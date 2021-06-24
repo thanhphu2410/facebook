@@ -1,3 +1,5 @@
+$("#message_wrapper").animate({ scrollTop: $(document).height() }, 1000);
+
 function waitBody() {
     $("body").addClass("wait");
 }
@@ -278,7 +280,6 @@ $(document).on("input", "#post_form textarea", function() {
 
 $(document).on("click", "#image-path-icon", function(e) {
     e.preventDefault();
-    console.log("hihi");
     $("#image-path-input").click();
 });
 
@@ -377,7 +378,6 @@ $(window).on("scroll", function(e) {
         let take = parseInt($("#take_val").val());
         let offset = parseInt($("#offset_val").val());
         let forWho = $("#all_posts").attr("data-target");
-        console.log(forWho);
         $.ajax({
             url:
                 "/load-more-posts?take=" +
@@ -438,8 +438,9 @@ $(document).on("click", ".like", function(e) {
     });
 });
 
-$(document).on("input", "#input_message", function() {
-    let minHeight = parseInt($(".message").css("min-height"));
+$(document).on("input", "#input_message", function(e) {
+    e.preventDefault();
+    let minHeight = parseInt($(".message").css("height"));
     let oldHeight = parseInt(this.style.height || 44);
     this.style.height = "auto";
 
@@ -450,6 +451,69 @@ $(document).on("input", "#input_message", function() {
         this.style.height = "116px";
     }
 
-    let newHeight = parseInt(this.style.height || 44);
-    $(".message").css("min-height", minHeight - (newHeight - oldHeight) + "px");
+    let newHeight = parseInt(this.style.height);
+    $(".message").css("height", minHeight - (newHeight - oldHeight) + "px");
 });
+
+$(document).on("click", ".load-message", function(e) {
+    e.preventDefault();
+    $.ajax({
+        url: $(this).attr("data-target"),
+        type: "GET",
+        success: function(data) {
+            $(".messenger-item-wrapper").remove();
+            $(".app").prepend(data.html);
+        }
+    });
+});
+
+$(document).on("submit", "#individual_chat_form", function(e) {
+    e.preventDefault();
+    var formData = new FormData($(this)[0]);
+    // let wrapper = $(this).parents(".form-wrapper");
+    let content = $("#input_message")
+        .val()
+        .trim();
+    if (content == false) {
+        return false;
+    }
+    ajaxSetup();
+    $.ajax({
+        url: "/individual-chat",
+        type: "POST",
+        data: formData,
+        success: function(data) {
+            $("#input_message").val("");
+            $("#message_wrapper").append(
+                '<div class="right-message mt-3 text-right">' +
+                    "<p>" +
+                    data.content +
+                    "</p>" +
+                    "</div>"
+            );
+            $("#message_wrapper").animate(
+                { scrollTop: $(document).height() },
+                1000
+            );
+        },
+        cache: false,
+        processData: false,
+        contentType: false
+    });
+});
+
+var ajax_call = function() {
+    console.log('hi');
+    $.ajax({
+        url: "messenger/load/1",
+        type: "GET",
+        success: function(data) {
+            $(".messenger-item-wrapper").remove();
+            $(".app").prepend(data.html);
+        }
+    });
+};
+
+var interval = 1000 * 60 * 0.5; // where X is your every X minutes
+
+setInterval(ajax_call, interval);
