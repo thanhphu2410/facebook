@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('load-more-posts', 'AjaxController@getMorePosts');
     Route::post('like/{post}', 'LikeController@store');
     Route::post('unlike/{post}', 'LikeController@destroy');
+    Route::get('messenger', 'IndividualChatController@index')->name('messenger.index');
     Route::get('messenger/load/{chat}', 'IndividualChatController@show')->name('messenger.load');
     Route::post('individual-chat', 'IndividualChatController@store');
     Route::resource('posts', 'PostController');

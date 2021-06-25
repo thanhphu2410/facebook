@@ -15,11 +15,10 @@ class HomeController extends Controller
     public function index()
     {
         $posts = $this->post->get_posts(['user_ids' => auth()->user()->allFriendIds()]);
-        $messages = IndividualChat::all();
         if (request()->ajax()) {
             $html = view('home.ajax-index', compact('posts'))->render();
             return response()->json(['html' => $html]);
         }
-        return view('home.index', compact('posts', 'messages'));
+        return view('home.index', compact('posts'));
     }
 }

@@ -122,3 +122,9 @@
 .messenger-item-wrapper .actions-btn img {
     width: 30px;
 }
+.messenger-icon.active{
+    background: #e7f3ff !important;
+}
+.messenger-icon.active > i{
+    color: #1876f2;
+}

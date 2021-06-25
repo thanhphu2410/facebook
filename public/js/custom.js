@@ -1,5 +1,3 @@
-$("#message_wrapper").animate({ scrollTop: $(document).height() }, 1000);
-
 function waitBody() {
     $("body").addClass("wait");
 }
@@ -463,6 +461,10 @@ $(document).on("click", ".load-message", function(e) {
         success: function(data) {
             $(".messenger-item-wrapper").remove();
             $(".app").prepend(data.html);
+            $("#message_wrapper").animate(
+                { scrollTop: $(document).height() },
+                1000
+            );
         }
     });
 });
@@ -470,7 +472,6 @@ $(document).on("click", ".load-message", function(e) {
 $(document).on("submit", "#individual_chat_form", function(e) {
     e.preventDefault();
     var formData = new FormData($(this)[0]);
-    // let wrapper = $(this).parents(".form-wrapper");
     let content = $("#input_message")
         .val()
         .trim();
@@ -502,18 +503,44 @@ $(document).on("submit", "#individual_chat_form", function(e) {
     });
 });
 
-var ajax_call = function() {
-    console.log('hi');
-    $.ajax({
-        url: "messenger/load/1",
-        type: "GET",
-        success: function(data) {
-            $(".messenger-item-wrapper").remove();
-            $(".app").prepend(data.html);
+$(document).on("click", ".messenger-icon", function(e) {
+    e.preventDefault();
+    let messenger_icon = $(this);
+    if ($(".messenger-list-wrapper").length) {
+        messenger_icon.removeClass("active");
+        if ($(".messenger-list-wrapper").hasClass("d-none")) {
+            $(".messenger-list-wrapper").removeClass("d-none");
+            messenger_icon.addClass("active");
+        } else {
+            $(".messenger-list-wrapper").addClass("d-none");
         }
-    });
-};
+    } else {
+        $.ajax({
+            url: "/messenger",
+            type: "GET",
+            success: function(data) {
+                $(".messenger-icon").append(data.html);
+                messenger_icon.addClass("active");
+            }
+        });
+    }
+});
 
-var interval = 1000 * 60 * 0.5; // where X is your every X minutes
+// var ajax_call = function() {
+//     $.ajax({
+//         url: "messenger/load/1",
+//         type: "GET",
+//         success: function(data) {
+//             $(".messenger-item-wrapper").remove();
+//             $(".app").prepend(data.html);
+//             $("#message_wrapper").animate(
+//                 { scrollTop: $(document).height() },
+//                 1000
+//             );
+//         }
+//     });
+// };
 
-setInterval(ajax_call, interval);
+// var interval = 1000 * 60 * 0.5; // where X is your every X minutes
+
+// setInterval(ajax_call, interval);
