@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <div class="profile">
+    <input type="hidden" value="{{ $profile->id }}" id="profile_id">
+    <div class="profile" id="profile">
         <div class="card">
             <div class="d-flex align-items-center justify-content-center cover-avatar">
                 <div class="col-9 text-center">

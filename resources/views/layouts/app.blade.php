@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('css/messenger.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="auth-id" content="{{ $auth->id }}" />
 </head>
 
 <body>
@@ -20,9 +21,9 @@
         <a class="navbar-brand fb-logo gotohome" href="/">
             <i class="fab fa-facebook"></i>
         </a>
-        <form class="form-inline my-2 my-lg-0 search">
+        <form class="form-inline my-2 my-lg-0 search" id="search-profile-form">
             <input class="form-control mr-sm-2" type="search" data-target="{{ route('get-profiles') }}"
-                placeholder="Tìm kiếm trên facebook" aria-label="Search" id="search-profile-input">
+                placeholder="Tìm kiếm trên facebook" aria-label="Search" id="search-profile-input" autocomplete="off">
             <i class="fas fa-search" id="search-icon"></i>
             @include('search.search-profile')
         </form>
@@ -62,10 +63,10 @@
         </div>
 
         <div class="d-flex align-items-center">
-            <a class="gotoprofile main-nav" href="{{ route('profile', [$current_user->id]) }}" id="profile-nav">
+            <a class="gotoprofile main-nav" href="{{ route('profile', [$auth->id]) }}" id="profile-nav">
                 <div class="right-side-nav">
-                    <img src="{{ $current_user->avatar_path }}" class="avatar">
-                    <span>{{ $current_user->first_name }}</span>
+                    <img src="{{ $auth->avatar_path }}" class="avatar">
+                    <span>{{ $auth->first_name }}</span>
                 </div>
             </a>
             <div class="right-icon">
@@ -73,7 +74,6 @@
             </div>
             <div class="right-icon messenger-icon">
                 <i class="fab fa-facebook-messenger"></i>
-                {{-- @include('messenger.index') --}}
             </div>
             <div class="right-icon">
                 <i class="fas fa-bell"></i>
@@ -99,6 +99,7 @@
     <script src="{{ asset('packages/lightbox/js/lightbox.js') }}"></script>
     <script src="{{ asset('js/fontawesome.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    @yield('script')
 </body>
 
 </html>

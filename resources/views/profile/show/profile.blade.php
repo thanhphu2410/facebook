@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
     @php $fr_helper = fr_helper($profile->id); @endphp
-    <div class="profile">
+    <input type="hidden" value="{{ $profile->id }}" id="profile_id">
+    <div class="profile" id="profile">
         <div class="card">
             <div class="d-flex align-items-center justify-content-center cover-avatar">
                 <div class="col-9 text-center">

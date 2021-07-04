@@ -1,8 +1,8 @@
 <div class="col-3 left-sidebar p-3">
-    <a class="gotoprofile" href="{{ route('profile', [$current_user->id]) }}">
+    <a class="gotoprofile" href="{{ route('profile', [$auth->id]) }}">
         <div class="left-item gotoprofile">
-            <img src="{{ $current_user->avatar_path }}">
-            <span class="pl-2">{{ $current_user->full_name }}</span>
+            <img src="{{ $auth->avatar_path }}">
+            <span class="pl-2">{{ $auth->full_name }}</span>
         </div>
     </a>
 

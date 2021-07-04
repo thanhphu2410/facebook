@@ -1,3 +1,9 @@
+lightbox.option({
+    resizeDuration: 10,
+    wrapAround: true,
+    disableScrolling: true
+});
+
 function waitBody() {
     $("body").addClass("wait");
 }
@@ -48,18 +54,68 @@ function changeAddressBar(url) {
 
 $(document).on("click", ".gotohome", function(e) {
     e.preventDefault();
-    sendAjax("/");
-    changeActive($(".main-nav"), $("#home-nav"));
-    changeAddressBar("/");
+    waitBody();
+    $.ajax({
+        url: "/",
+        type: "GET",
+        success: function(data) {
+            var home = $(data)
+                .find("#home")
+                .wrapAll("<div>")
+                .parent()
+                .html();
+            $(".app").html(home);
+            $(window).scrollTop(0);
+            unwaitBody();
+            changeActive($(".main-nav"), $("#home-nav"));
+            changeAddressBar("/");
+        },
+        error: function(e) {
+            if (e.status == 401) {
+                window.location.href = "/login";
+            }
+        }
+    });
 });
 
 $(document).on("click", ".gotoprofile", function(e) {
     e.preventDefault();
-    let result = sendAjax($(this).attr("href"));
-    if (result.isMyProfile) {
-        changeActive($(".main-nav"), $("#profile-nav"));
-    }
-    changeAddressBar($(this).attr("href"));
+    let url = $(this).attr("href");
+    waitBody();
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function(data) {
+            var home = $(data)
+                .find("#profile")
+                .wrapAll("<div>")
+                .parent()
+                .html();
+            $(".app").html(home);
+            $(window).scrollTop(0);
+            unwaitBody();
+            let auth_id = parseInt($('meta[name="auth-id"]').attr("content"));
+            let profile_id = parseInt(
+                $(data)
+                    .find("#profile_id")
+                    .val()
+            );
+            if (auth_id == profile_id) {
+                changeActive($(".main-nav"), $("#profile-nav"));
+            }
+            changeAddressBar(url);
+        },
+        error: function(e) {
+            if (e.status == 401) {
+                window.location.href = "/login";
+            }
+        }
+    });
+
+    // let result = sendAjax($(this).attr("href"));
+    // if (result.is_my_profile) {
+    //     changeActive($(".main-nav"), $("#profile-nav"));
+    // }
 });
 
 $(document).on("click", "#introduction-tab", function(e) {
@@ -359,6 +415,10 @@ $(document).on(
     }
 );
 
+$(document).on("submit", "#search-profile-form", function(e) {
+    e.preventDefault();
+});
+
 $(document).on("keyup", "#search-profile-input", function(e) {
     e.preventDefault();
     $.ajax({
@@ -375,7 +435,7 @@ $(window).on("scroll", function(e) {
     if ($(window).scrollTop() == $(document).height() - $(window).height()) {
         let take = parseInt($("#take_val").val());
         let offset = parseInt($("#offset_val").val());
-        let forWho = $("#all_posts").attr("data-target");
+        let forWho = $("#all_posts").attr("for");
         $.ajax({
             url:
                 "/load-more-posts?take=" +

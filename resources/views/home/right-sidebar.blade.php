@@ -20,17 +20,17 @@
     <div class="mt-2">
         <div class="contact">
             <span class="online"></span>
-            <img src="{{ $current_user->avatar_path }}">
+            <img src="{{ $auth->avatar_path }}">
             <span>Thanh Phú</span>
         </div>
 
         <div class="contact">
-            <img src="{{ $current_user->avatar_path }}">
+            <img src="{{ $auth->avatar_path }}">
             <span>Thanh Phú</span>
         </div>
 
         <div class="contact">
-            <img src="{{ $current_user->avatar_path }}">
+            <img src="{{ $auth->avatar_path }}">
             <span>Thanh Phú</span>
         </div>
     </div>

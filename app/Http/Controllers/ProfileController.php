@@ -17,13 +17,6 @@ class ProfileController extends Controller
         $auth = auth()->user();
         $check = ($profile->id == $auth->id) ? 'edit' : 'show';
         $posts = $this->post->get_posts(['user_ids' => [$profile->id]]);
-        if (request()->ajax()) {
-            $html = view("profile.ajax.$check", compact('profile', 'posts'))->render();
-            return response()->json([
-                'html' => $html,
-                'isMyProfile' => $profile->id == $auth->id
-            ]);
-        }
         return view("profile.$check.profile", compact('profile', 'auth', 'posts'));
     }
 

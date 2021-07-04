@@ -79,7 +79,7 @@
             </div>
         </div>
 
-        <div id="all_posts" data-target="{{ $profile->id }}">
+        <div id="all_posts" for="{{ $profile->id }}">
             <input type="hidden" value="10" id="take_val">
             <input type="hidden" value="5" id="offset_val">
             @foreach ($posts as $item)

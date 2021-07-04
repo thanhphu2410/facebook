@@ -2,9 +2,9 @@
     <div class="card shadow-sm">
         <div class="card-body">
             <div class="d-flex align-items-center">
-                <img src="{{ $current_user->avatar_path }}" class="avatar">
+                <img src="{{ $auth->avatar_path }}" class="avatar">
                 <div class="ml-3 wdut" data-toggle="modal" data-target="#new_post_modal">
-                    {{ $current_user->first_name }} ơi, bạn đang nghĩ gì thế?
+                    {{ $auth->first_name }} ơi, bạn đang nghĩ gì thế?
                 </div>
             </div>
             <hr>
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div id="all_posts" data-target="{{ implode(",", $current_user->allFriendIds()) }}">
+    <div id="all_posts" for="{{ implode(',', $auth->allFriendIds()) }}">
         <input type="hidden" value="10" id="take_val">
         <input type="hidden" value="5" id="offset_val">
         @foreach ($posts as $item)

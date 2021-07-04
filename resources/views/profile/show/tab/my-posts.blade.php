@@ -65,7 +65,7 @@
         <div class="card shadow-sm">
             <div class="card-body">
                 <div class="d-flex align-items-center">
-                    <img src="{{ $current_user->avatar_path }}" class="avatar">
+                    <img src="{{ $auth->avatar_path }}" class="avatar">
                     <div class="ml-3 wdut">Bạn đang nghĩ gì?</div>
                 </div>
                 <hr>
