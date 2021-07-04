@@ -1,11 +1,8 @@
-.messenger-icon {
-    position: relative;
-}
 .messenger-list-wrapper {
     position: absolute;
-    left: -200px;
     width: 345px;
-    top: 50px;
+    top: 60px;
+    right: 17px;
 }
 .messenger-list-wrapper .search input {
     width: 100% !important;
@@ -62,7 +59,7 @@
     bottom: 0;
     right: 50px;
     width: 328px;
-    z-index: 1;
+    z-index: 100;
     height: 455px;
 }
 .messenger-item-wrapper .contact img {

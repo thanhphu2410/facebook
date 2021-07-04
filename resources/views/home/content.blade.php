@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div id="all_posts" for="{{ implode(',', $auth->allFriendIds()) }}">
+    <div id="all_posts" for="{{ implode(',', $auth->all_friends_ids()) }}">
         <input type="hidden" value="10" id="take_val">
         <input type="hidden" value="5" id="offset_val">
         @foreach ($posts as $item)

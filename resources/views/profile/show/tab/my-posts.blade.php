@@ -66,7 +66,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <img src="{{ $auth->avatar_path }}" class="avatar">
-                    <div class="ml-3 wdut">Bạn đang nghĩ gì?</div>
+                    <div class="ml-3 wdut">Viết gì đó cho {{ $profile->first_name }}</div>
                 </div>
                 <hr>
                 <div class="d-flex align-items-center">

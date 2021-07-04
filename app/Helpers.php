@@ -28,6 +28,9 @@ if (! function_exists('store_file')) {
 if (! function_exists('delete_file')) {
     function delete_file($path)
     {
-        File::delete(substr($path, 1)); // remove the first "/" of image path
+        $default_files = ['/images/avatar.png', '/images/over-photo.jpeg'];
+        if (!in_array($path, $default_files)) {
+            File::delete(substr($path, 1)); // remove the first "/" of the path then remove the file
+        }
     }
 }

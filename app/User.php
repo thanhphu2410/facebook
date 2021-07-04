@@ -40,6 +40,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /*
+        ===============================RELATIONSHIPS===============================
+    */
+
     public function province()
     {
         return $this->belongsTo('App\Models\Province');
@@ -65,28 +69,32 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Like');
     }
 
-    public function all_friends()
+    /*
+        ===============================LOCAL SCOPE===============================
+    */
+
+    public function scopeName($query, $name)
     {
-        return Friend::where(function (Builder $query) {
-            return $query->where('from', $this->id)->where('status', 'A');
-        })->orWhere(function (Builder $query) {
-            return $query->where('to', $this->id)->where('status', 'A');
-        })->get();
+        if (!empty($name)) {
+            $query->where('full_name', 'LIKE', '%'.$name.'%');
+        }
+        return $query;
     }
 
-    public function allFriendIds()
+    public function scopeExcept_ids($query, $ids)
     {
-        $results = [];
-        foreach ($this->all_friends() as $friend) {
-            if (!in_array($friend->from, $results)) {
-                $results[] = $friend->from;
+        if (!empty($ids)) {
+            if (is_int($ids)) {
+                $ids = [$ids]; // th truyền vào một id
             }
-            if (!in_array($friend->to, $results)) {
-                $results[] = $friend->to;
-            }
+            $query->whereNotIn('id', $ids);
         }
-        return $results;
+        return $query;
     }
+
+    /*
+        ===============================ASSESORS===============================
+    */
 
     public function getFullAddressAttribute()
     {
@@ -118,21 +126,66 @@ class User extends Authenticatable
         return '/images/cover-photo.jpeg';
     }
 
-    public function setAvatarAttribute()
+    /*
+        ===============================MUTATORS===============================
+    */
+
+    public function setAvatarAttribute($value)
     {
         if (request()->has('avatar')) {
             delete_file($this->avatar);
             $path = store_file(request('avatar'), 'avatar');
             $this->attributes['avatar'] = '/' . $path;
+        } else {
+            $this->attributes['avatar'] = $value;
         }
     }
 
-    public function setCoverPhotoAttribute()
+    public function setCoverPhotoAttribute($value)
     {
         if (request()->has('cover_photo')) {
             delete_file($this->cover_photo);
             $path = store_file(request('cover_photo'), 'cover-photo');
             $this->attributes['cover_photo'] = '/' . $path;
+        } else {
+            $this->attributes['cover_photo'] = $value;
         }
+    }
+
+    /*
+        ===============================METHODS===============================
+    */
+
+    public function all_friends()
+    {
+        return Friend::where(function (Builder $query) {
+            return $query->where('from', $this->id)->where('status', 'A');
+        })->orWhere(function (Builder $query) {
+            return $query->where('to', $this->id)->where('status', 'A');
+        })->get();
+    }
+
+    public function all_friends_ids()
+    {
+        $results = [];
+        foreach ($this->all_friends() as $friend) {
+            if (!in_array($friend->from, $results)) {
+                $results[] = $friend->from;
+            }
+            if (!in_array($friend->to, $results)) {
+                $results[] = $friend->to;
+            }
+        }
+        return $results;
+    }
+
+    public function get_users($params = [])
+    {
+        $users = $this->query()
+                ->name(@$params['name'])
+                ->except_ids(@$params['except'])
+                ->latest()
+                ->get();
+        return $users;
     }
 }

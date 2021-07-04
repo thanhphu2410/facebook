@@ -59,7 +59,10 @@ class RegisterController extends Controller
             'last_name' => 'họ',
             'first_name' => 'tên',
             'gender' => 'giới tính',
-            'password' => 'mật khẩu'
+            'password' => 'mật khẩu',
+            'day' => 'ngày',
+            'month' => 'tháng',
+            'year' => 'năm'
         ];
         return Validator::make($data, [
             'last_name' => ['required', 'string', 'max:255'],
@@ -89,6 +92,8 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'avatar' => '/images/avatar.png',
+            'cover_photo' => '/images/cover-photo.jpeg',
         ]);
     }
 }

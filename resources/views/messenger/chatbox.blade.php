@@ -3,7 +3,7 @@
 @endphp
 <div class="card shadow-lg messenger-item-wrapper">
     <div class="card-body p-0">
-        <div class="contact shadow-sm p-2">
+        <div class="contact shadow-sm p-2 toggle-chatbox">
             <span class="online"></span>
             <img src="{{ $user->avatar_path }}">
             <div>

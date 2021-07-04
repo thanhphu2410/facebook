@@ -6,12 +6,19 @@ use App\User;
 use App\Models\Post;
 use App\Models\District;
 use App\Models\Province;
+use App\Models\IndividualChat;
 
 class AjaxController extends Controller
 {
+    private $post;
+    private $user;
+    private $individual_chat;
+    
     public function __construct()
     {
         $this->post = new Post();
+        $this->user = new User();
+        $this->individual_chat = new IndividualChat();
     }
     
     public function getDistricts()
@@ -31,11 +38,24 @@ class AjaxController extends Controller
     public function getProfiles()
     {
         $name = request('name');
-        $profiles = User::where('full_name', 'LIKE', '%'.$name.'%')->where('id', '!=', auth()->id())->get();
+        $profiles = $this->user->get_users(['name' => $name, 'except' => auth()->id()]);
         if (empty($name)) {
             $profiles = [];
         }
         $html = view('search.list-result', compact('profiles'))->render();
+        return response()->json(['html' => $html]);
+    }
+
+    public function getMessages()
+    {
+        $name = request('name');
+        if (empty($name)) {
+            $messages = $this->individual_chat->my_messages(auth()->id());
+            $html = view('messenger.list-message', compact('messages'))->render();
+        } else {
+            $profiles = $this->user->get_users(['name' => $name, 'except' => auth()->id()]);
+            $html = view('messenger.search-result', compact('profiles'))->render();
+        }
         return response()->json(['html' => $html]);
     }
 

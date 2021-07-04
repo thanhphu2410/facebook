@@ -26,12 +26,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('get-districts', 'AjaxController@getDistricts')->name('get-districts');
     Route::get('get-wards', 'AjaxController@getWards')->name('get-wards');
     Route::get('get-profiles', 'AjaxController@getProfiles')->name('get-profiles');
+    Route::get('get-messages', 'AjaxController@getMessages')->name('get-messages');
     Route::get('load-more-posts', 'AjaxController@getMorePosts');
     Route::post('like/{post}', 'LikeController@store');
     Route::post('unlike/{post}', 'LikeController@destroy');
     Route::get('messenger', 'IndividualChatController@index')->name('messenger.index');
     Route::get('messenger/load/{chat}', 'IndividualChatController@show')->name('messenger.load');
-    Route::post('individual-chat', 'IndividualChatController@store');
+    Route::get('messenger/store/{user_id}', 'IndividualChatController@store')->name('messenger.store');
+    Route::post('individual-chat', 'IndividualChatController@update');
     Route::resource('posts', 'PostController');
 });
 Auth::routes();

@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class FriendHelper
 {
+    private $auth_id;
+    private $user_id;
+    
     public function __construct($user_id)
     {
         $this->auth_id = auth()->id();

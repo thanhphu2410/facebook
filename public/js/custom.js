@@ -411,6 +411,7 @@ $(document).on(
     function() {
         $(".search-profile").css("display", "none");
         $("#search-profile-input").val("");
+        $("#search-mess-input").val("");
         $("#search-icon").css("display", "block");
     }
 );
@@ -529,6 +530,37 @@ $(document).on("click", ".load-message", function(e) {
     });
 });
 
+$(document).on("click", ".new-message", function(e) {
+    e.preventDefault();
+    $("#search-mess-input").val("");
+    $.ajax({
+        url: $("#search-mess-input").attr("data-target") + "?name=",
+        type: "GET",
+        success: function(data) {
+            $(".messenger-list-wrapper #list").empty();
+            $(".messenger-list-wrapper #list").append(data.html);
+        }
+    });
+    
+    $.ajax({
+        url: $(this).attr("data-target"),
+        type: "GET",
+        success: function(data) {
+            $(".messenger-item-wrapper").remove();
+            $(".app").prepend(data.html);
+            $("#message_wrapper").animate(
+                { scrollTop: $(document).height() },
+                1000
+            );
+        }
+    });
+});
+
+$(document).on("click", ".toggle-chatbox", function(e) {
+    e.preventDefault();
+    $(this).closest(".messenger-item-wrapper").remove();
+});
+
 $(document).on("submit", "#individual_chat_form", function(e) {
     e.preventDefault();
     var formData = new FormData($(this)[0]);
@@ -579,11 +611,23 @@ $(document).on("click", ".messenger-icon", function(e) {
             url: "/messenger",
             type: "GET",
             success: function(data) {
-                $(".messenger-icon").append(data.html);
+                $(".header").append(data.html);
                 messenger_icon.addClass("active");
             }
         });
     }
+});
+
+$(document).on("keyup", "#search-mess-input", function(e) {
+    e.preventDefault();
+    $.ajax({
+        url: $(this).attr("data-target") + "?name=" + $(this).val(),
+        type: "GET",
+        success: function(data) {
+            $(".messenger-list-wrapper #list").empty();
+            $(".messenger-list-wrapper #list").append(data.html);
+        }
+    });
 });
 
 // var ajax_call = function() {
