@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Models\Chat;
 use App\Models\Post;
+use App\Models\ChatUser;
 use App\Models\District;
 use App\Models\Province;
 use App\Models\IndividualChat;
@@ -13,12 +15,16 @@ class AjaxController extends Controller
     private $post;
     private $user;
     private $individual_chat;
+    private $chat;
+    private $chat_user;
     
     public function __construct()
     {
         $this->post = new Post();
         $this->user = new User();
         $this->individual_chat = new IndividualChat();
+        $this->chat = new Chat();
+        $this->chat_user = new ChatUser();
     }
     
     public function getDistricts()
@@ -50,7 +56,8 @@ class AjaxController extends Controller
     {
         $name = request('name');
         if (empty($name)) {
-            $messages = $this->individual_chat->my_messages(auth()->id());
+            $chat_ids = $this->chat_user->get_chat_users(['auth_id' => auth()->id()])->pluck('chat_id');
+            $messages = $this->chat->get_chats(['ids' => $chat_ids]);
             $html = view('messenger.list-message', compact('messages'))->render();
         } else {
             $profiles = $this->user->get_users(['name' => $name, 'except' => auth()->id()]);

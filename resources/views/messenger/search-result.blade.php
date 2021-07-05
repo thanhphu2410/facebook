@@ -1,10 +1,14 @@
 @foreach ($profiles ?? [] as $user)
-    <div class="contact new-message" data-target="{{ route('messenger.store', [$user->id]) }}">
-        <span class="online"></span>
-        <img src="{{ $user->avatar_path }}">
-        <div>
-            <p>{{ $user->full_name }}</p>
-            <span></span>
+    <form action="{{ route('messenger.store') }}" method="post">
+        @csrf
+        <input type="hidden" value="{{ $user->id }}" name="user_ids[]">
+        <div class="contact new-message">
+            <span class="online"></span>
+            <img src="{{ $user->avatar_path }}">
+            <div>
+                <p>{{ $user->full_name }}</p>
+                <span></span>
+            </div>
         </div>
-    </div>
+    </form>
 @endforeach

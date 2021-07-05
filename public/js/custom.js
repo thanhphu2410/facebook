@@ -545,9 +545,12 @@ $(document).on("click", ".new-message", function(e) {
         }
     });
 
+    var formData = new FormData($(this).closest('form')[0]);
+    ajaxSetup();
     $.ajax({
-        url: $(this).attr("data-target"),
-        type: "GET",
+        url: $(this).closest('form').attr("action"),
+        type: "POST",
+        data: formData,
         success: function(data) {
             $(".messenger-item-wrapper").remove();
             $(".app").prepend(data.html);
@@ -555,12 +558,16 @@ $(document).on("click", ".new-message", function(e) {
                 { scrollTop: $(document).height() },
                 1000
             );
-        }
+        },
+        cache: false,
+        processData: false,
+        contentType: false
     });
 });
 
-$(document).on("click", ".toggle-chatbox", function(e) {
+$(document).on("click", ".remove-chatbox", function(e) {
     e.preventDefault();
+    $("#current_chat_id").val("");
     $(this)
         .closest(".messenger-item-wrapper")
         .remove();
@@ -670,23 +677,23 @@ $(document).on("change", "#add-image", function(e) {
     });
 });
 
-var ajax_call = function() {
-    if ($("#current_chat_id").val() != "") {
-        $.ajax({
-            url: "/messenger/load/" + $("#current_chat_id").val(),
-            type: "GET",
-            success: function(data) {
-                $(".messenger-item-wrapper").remove();
-                $(".app").prepend(data.html);
-                $("#message_wrapper").animate(
-                    { scrollTop: $(document).height() },
-                    1000
-                );
-            }
-        });
-    }
-};
+// var ajax_call = function() {
+//     if ($("#current_chat_id").val() != "") {
+//         $.ajax({
+//             url: "/messenger/load/" + $("#current_chat_id").val(),
+//             type: "GET",
+//             success: function(data) {
+//                 $(".messenger-item-wrapper").remove();
+//                 $(".app").prepend(data.html);
+//                 $("#message_wrapper").animate(
+//                     { scrollTop: $(document).height() },
+//                     1000
+//                 );
+//             }
+//         });
+//     }
+// };
 
-var interval = 1000 * 60 * 0.5; // where X is your every X minutes
+// var interval = 1000 * 60 * 0.5; // where X is your every X minutes
 
-setInterval(ajax_call, interval);
+// setInterval(ajax_call, interval);

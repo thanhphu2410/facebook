@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\IndividualChat;
 use App\Models\IndividualItem;
 use App\Models\IndividualChatImage;
-use Illuminate\Database\Eloquent\Builder;
 
 class IndividualChatController extends Controller
 {
