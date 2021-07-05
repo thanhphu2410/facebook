@@ -516,6 +516,9 @@ $(document).on("input", "#input_message", function(e) {
 
 $(document).on("click", ".load-message", function(e) {
     e.preventDefault();
+    let target = $(this).attr("data-target");
+    let id = target.substr(target.lastIndexOf("/") + 1);
+    $("#current_chat_id").val(id);
     $.ajax({
         url: $(this).attr("data-target"),
         type: "GET",
@@ -541,7 +544,7 @@ $(document).on("click", ".new-message", function(e) {
             $(".messenger-list-wrapper #list").append(data.html);
         }
     });
-    
+
     $.ajax({
         url: $(this).attr("data-target"),
         type: "GET",
@@ -558,7 +561,9 @@ $(document).on("click", ".new-message", function(e) {
 
 $(document).on("click", ".toggle-chatbox", function(e) {
     e.preventDefault();
-    $(this).closest(".messenger-item-wrapper").remove();
+    $(this)
+        .closest(".messenger-item-wrapper")
+        .remove();
 });
 
 $(document).on("submit", "#individual_chat_form", function(e) {
@@ -576,9 +581,11 @@ $(document).on("submit", "#individual_chat_form", function(e) {
         type: "POST",
         data: formData,
         success: function(data) {
+            $("#input_message").css("height", 44);
+            $(".message").css("height", 345);
             $("#input_message").val("");
             $("#message_wrapper").append(
-                '<div class="right-message mt-3 text-right">' +
+                '<div class="right-message mt-3">' +
                     "<p>" +
                     data.content +
                     "</p>" +
@@ -630,21 +637,56 @@ $(document).on("keyup", "#search-mess-input", function(e) {
     });
 });
 
-// var ajax_call = function() {
-//     $.ajax({
-//         url: "messenger/load/1",
-//         type: "GET",
-//         success: function(data) {
-//             $(".messenger-item-wrapper").remove();
-//             $(".app").prepend(data.html);
-//             $("#message_wrapper").animate(
-//                 { scrollTop: $(document).height() },
-//                 1000
-//             );
-//         }
-//     });
-// };
+$(document).on("click", "#actions-btn", function(e) {
+    e.preventDefault();
+    $("#add-image").click();
+});
 
-// var interval = 1000 * 60 * 0.5; // where X is your every X minutes
+$(document).on("change", "#add-image", function(e) {
+    e.preventDefault();
+    var formData = new FormData($("#individual_chat_form")[0]);
+    ajaxSetup();
+    $.ajax({
+        url: "/individual-chat",
+        type: "POST",
+        data: formData,
+        success: function(data) {
+            $("#add-image").val("");
+            $("#message_wrapper").append(
+                '<div class="right-message mt-3">' +
+                    "<img src='" +
+                    data.image +
+                    "'>" +
+                    "</div>"
+            );
+            $("#message_wrapper").animate(
+                { scrollTop: $(document).height() },
+                1000
+            );
+        },
+        cache: false,
+        processData: false,
+        contentType: false
+    });
+});
 
-// setInterval(ajax_call, interval);
+var ajax_call = function() {
+    if ($("#current_chat_id").val() != "") {
+        $.ajax({
+            url: "/messenger/load/" + $("#current_chat_id").val(),
+            type: "GET",
+            success: function(data) {
+                $(".messenger-item-wrapper").remove();
+                $(".app").prepend(data.html);
+                $("#message_wrapper").animate(
+                    { scrollTop: $(document).height() },
+                    1000
+                );
+            }
+        });
+    }
+};
+
+var interval = 1000 * 60 * 0.5; // where X is your every X minutes
+
+setInterval(ajax_call, interval);

@@ -30,13 +30,22 @@ class IndividualChat extends Model
         return $this->from == auth()->id() ? $this->to_user : $this->from_user;
     }
 
+    public function setLastMessAttribute($value)
+    {
+        if (strlen($value) > 15) {
+            $this->attributes['last_mess'] = substr($value, 0, 15) . "...";
+        } else {
+            $this->attributes['last_mess'] = $value;
+        }
+    }
+
     public function my_messages($auth_id)
     {
         $messages = $this->where(function (Builder $query) use ($auth_id) {
             return $query->where('from', $auth_id);
         })->orWhere(function (Builder $query) use ($auth_id) {
             return $query->where('to', $auth_id);
-        })->get();
+        })->latest()->get();
         
         return $messages;
     }

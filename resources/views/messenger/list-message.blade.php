@@ -7,7 +7,7 @@
         <img src="{{ $user->avatar_path }}">
         <div>
             <p>{{ $user->full_name }}</p>
-            <span>{{ $message->last_mess }}</span>
+            <span>{{ $message->last_mess }} · {{ $message->created_at->format('m-d') }}</span>
         </div>
     </div>
 @endforeach

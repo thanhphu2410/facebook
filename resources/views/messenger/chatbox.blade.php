@@ -1,5 +1,5 @@
 @php
-    $user = $chat->user;
+$user = $chat->user;
 @endphp
 <div class="card shadow-lg messenger-item-wrapper">
     <div class="card-body p-0">
@@ -13,22 +13,31 @@
         <div class="message p-2" id="message_wrapper">
             @foreach ($chat->items as $item)
                 @if ($item->user_id == auth()->id())
-                    <div class="right-message mt-3 text-right">
-                        <p>{{ $item->content }}</p>
+                    <div class="right-message mt-3">
+                        @if ($item->image)
+                            <img src="{{ $item->image->image_path }}">
+                        @else
+                            <p>{{ $item->content }}</p>
+                        @endif
                     </div>
                 @else
                     <div class="left-message d-flex align-items-center mt-2">
                         <img src="{{ $user->avatar_path }}">
-                        <p>{{ $item->content }}</p>
+                        @if ($item->image)
+                            <img class="image ml-2" src="{{ $item->image->image_path }}">
+                        @else
+                            <p>{{ $item->content }}</p>
+                        @endif
                     </div>
                 @endif
             @endforeach
         </div>
-        <form class="my-2 input-form" id="individual_chat_form" method="POST">
+        <form class="my-2 input-form" id="individual_chat_form" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" value="{{ $chat->id }}" name="chat_id">
             <div class="d-flex align-items-end">
-                <button class="btn btn-light actions-btn">
+                <input type="file" id="add-image" class="d-none" name="image">
+                <button class="btn btn-light actions-btn" id="actions-btn">
                     <img src="{{ asset('images/actions-button.png') }}" alt="">
                 </button>
                 <textarea name="content" id="input_message" rows="1" placeholder="Aa"></textarea>

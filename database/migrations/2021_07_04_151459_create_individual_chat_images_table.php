@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIndividualItemsTable extends Migration
+class CreateIndividualChatImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateIndividualItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('individual_items', function (Blueprint $table) {
+        Schema::create('individual_chat_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('chat_id')->constrained()->onDelete('cascade')->on('individual_chat');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->longText('content')->nullable();
+            $table->foreignId('chat_item')->constrained()->onDelete('cascade')->on('individual_items');
+            $table->string('image_path');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateIndividualItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('individual_items');
+        Schema::dropIfExists('individual_chat_images');
     }
 }

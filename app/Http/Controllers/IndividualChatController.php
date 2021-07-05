@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\IndividualChat;
 use App\Models\IndividualItem;
+use App\Models\IndividualChatImage;
 use Illuminate\Database\Eloquent\Builder;
 
 class IndividualChatController extends Controller
@@ -40,16 +41,21 @@ class IndividualChatController extends Controller
         return response()->json(['html' => $html]);
     }
 
-    public function update()
+    public function storeItem()
     {
         $auth_id = auth()->id();
         $chat = IndividualChat::find(request('chat_id'));
         $chat->update(['last_mess' => request('content')]);
-        IndividualItem::create([
+        $chat_item = IndividualItem::create([
             'chat_id' => $chat->id,
             'content' => request('content'),
             'user_id' => $auth_id
         ]);
-        return response()->json(['content' => request('content')]);
+        if (request()->has('image')) {
+            $chat_item->update(['content' => 'Image']);
+            $chat->update(['last_mess' => 'Image']);
+            $chat_image = IndividualChatImage::create(['chat_item' => $chat_item->id, 'image_path' => request('image')]);
+        }
+        return response()->json(['content' => request('content'), 'image' => @$chat_image->image_path]);
     }
 }

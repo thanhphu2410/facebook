@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('css/messenger.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <meta name="auth-id" content="{{ $auth->id }}" />
+    <meta name="auth-id" content="{{ $auth->id }}"/>
+    <input type="hidden" id="current_chat_id" value="">
 </head>
 
 <body>
