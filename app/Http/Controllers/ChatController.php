@@ -46,7 +46,7 @@ class ChatController extends Controller
             foreach ($messages as $message) {
                 $chat_users = $message->chat_users;
                 $is_exist = $chat_users->where('user_id', $user_ids[0]);
-                if (!empty($is_exist) && $chat_users->count() == 2) {
+                if ($is_exist->count() > 0 && $chat_users->count() == 2) {
                     $chat = $message;
                     break;
                 }
@@ -56,7 +56,7 @@ class ChatController extends Controller
                 $chat = Chat::create([]);
                 ChatUser::create(['user_id' => $user_ids[0], 'chat_id' => $chat->id]);
                 ChatUser::create(['user_id' => auth()->id(), 'chat_id' => $chat->id]);
-            } 
+            }
         }
         $html = view('messenger.chatbox', compact('chat'))->render();
         return response()->json(['html' => $html]);

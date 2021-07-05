@@ -545,10 +545,12 @@ $(document).on("click", ".new-message", function(e) {
         }
     });
 
-    var formData = new FormData($(this).closest('form')[0]);
+    var formData = new FormData($(this).closest("form")[0]);
     ajaxSetup();
     $.ajax({
-        url: $(this).closest('form').attr("action"),
+        url: $(this)
+            .closest("form")
+            .attr("action"),
         type: "POST",
         data: formData,
         success: function(data) {
