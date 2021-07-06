@@ -21,17 +21,17 @@
         <div class="contact">
             <span class="online"></span>
             <img src="{{ $auth->avatar_path }}">
-            <span>Thanh Phú</span>
+            <span>{{ $auth->full_name }}</span>
         </div>
 
         <div class="contact">
             <img src="{{ $auth->avatar_path }}">
-            <span>Thanh Phú</span>
+            <span>{{ $auth->full_name }}</span>
         </div>
 
         <div class="contact">
             <img src="{{ $auth->avatar_path }}">
-            <span>Thanh Phú</span>
+            <span>{{ $auth->full_name }}</span>
         </div>
     </div>
 </div>

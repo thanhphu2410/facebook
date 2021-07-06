@@ -16,7 +16,7 @@ class ChatImage extends Model
     public function setImagePathAttribute()
     {
         if (request()->has('image')) {
-            $path = store_file(request('image'), 'individual-chat-images');
+            $path = store_file(request('image'), 'chat-images');
             $this->attributes['image_path'] = '/' . $path;
         }
     }

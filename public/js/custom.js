@@ -586,7 +586,7 @@ $(document).on("submit", "#individual_chat_form", function(e) {
     }
     ajaxSetup();
     $.ajax({
-        url: "/individual-chat",
+        url: "/messenger/store-item",
         type: "POST",
         data: formData,
         success: function(data) {
@@ -656,7 +656,7 @@ $(document).on("change", "#add-image", function(e) {
     var formData = new FormData($("#individual_chat_form")[0]);
     ajaxSetup();
     $.ajax({
-        url: "/individual-chat",
+        url: "/messenger/store-item",
         type: "POST",
         data: formData,
         success: function(data) {

@@ -59,7 +59,7 @@
     bottom: 0;
     right: 50px;
     width: 328px;
-    z-index: 100;
+    z-index: 1;
     height: 455px;
 }
 .messenger-item-wrapper .contact img {

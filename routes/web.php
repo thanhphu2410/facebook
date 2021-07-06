@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('messenger', 'ChatController@index')->name('messenger.index');
     Route::get('messenger/load/{chat}', 'ChatController@show')->name('messenger.load');
     Route::post('messenger/store', 'ChatController@store')->name('messenger.store');
-    Route::post('individual-chat', 'ChatController@storeItem');
+    Route::post('messenger/store-item', 'ChatController@storeItem');
     Route::resource('posts', 'PostController');
 });
 Auth::routes();
