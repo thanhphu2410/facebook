@@ -24,14 +24,11 @@
                     <button type="button" class="btn btn-light all-images-btn">Xem tất cả</button>
                 </div>
                 <div class="mt-2 recent-images">
-                    <img src="https://scontent.fhan2-2.fna.fbcdn.net/v/t31.18172-8/22047972_734867140057787_4771538064359262849_o.jpg?_nc_cat=111&ccb=1-3&_nc_sid=8bfeb9&_nc_ohc=E5BP5W-P4zMAX8s0mp-&_nc_ht=scontent.fhan2-2.fna&oh=cc6039067e1efcc8a652cd0c27aa4f1f&oe=60E88119"
-                        alt="">
-                    <img src="https://scontent.fhan2-2.fna.fbcdn.net/v/t31.18172-8/22047972_734867140057787_4771538064359262849_o.jpg?_nc_cat=111&ccb=1-3&_nc_sid=8bfeb9&_nc_ohc=E5BP5W-P4zMAX8s0mp-&_nc_ht=scontent.fhan2-2.fna&oh=cc6039067e1efcc8a652cd0c27aa4f1f&oe=60E88119"
-                        alt="">
-                    <img src="https://scontent.fhan2-2.fna.fbcdn.net/v/t31.18172-8/22047972_734867140057787_4771538064359262849_o.jpg?_nc_cat=111&ccb=1-3&_nc_sid=8bfeb9&_nc_ohc=E5BP5W-P4zMAX8s0mp-&_nc_ht=scontent.fhan2-2.fna&oh=cc6039067e1efcc8a652cd0c27aa4f1f&oe=60E88119"
-                        alt="">
-                    <img src="https://scontent.fhan2-2.fna.fbcdn.net/v/t31.18172-8/22047972_734867140057787_4771538064359262849_o.jpg?_nc_cat=111&ccb=1-3&_nc_sid=8bfeb9&_nc_ohc=E5BP5W-P4zMAX8s0mp-&_nc_ht=scontent.fhan2-2.fna&oh=cc6039067e1efcc8a652cd0c27aa4f1f&oe=60E88119"
-                        alt="">
+                    @foreach ($post_images as $key => $image)
+                        <a href="{{ $image }}" data-lightbox="gallery_{{ $key }}">
+                            <img src="{{ $image }}">
+                        </a>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -40,23 +37,19 @@
                 <div class="d-flex align-items-baseline justify-content-between">
                     <div>
                         <h5>Bạn bè</h5>
-                        <p class="number-of-friends">300 người bạn</p>
+                        <p class="number-of-friends">{{ $profile->all_friends()->count() }} người bạn</p>
                     </div>
                     <button type="button" class="btn btn-light all-friends-btn">Xem tất cả</button>
                 </div>
                 <div class="mt-3 recent-friends row">
-                    <div class="col-4 text-center mb-2">
-                        <img src="{{ $profile->avatar_path }}" alt="">
-                        <h6 class="mt-2">Thanh Phú</h6>
-                    </div>
-                    <div class="col-4 text-center">
-                        <img src="{{ $profile->avatar_path }}" alt="">
-                        <h6 class="mt-2">Thanh Phú</h6>
-                    </div>
-                    <div class="col-4 text-center">
-                        <img src="{{ $profile->avatar_path }}" alt="">
-                        <h6 class="mt-2">Thanh Phú</h6>
-                    </div>
+                    @foreach ($friends as $friend)
+                        <div class="col-4 text-center mb-2">
+                            <img src="{{ $profile->avatar_path }}" alt="">
+                            <h6 class="mt-2">
+                                {{ $friend->from != $auth->id ? $friend->from_user->full_name : $friend->to_user->full_name }}
+                            </h6>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
