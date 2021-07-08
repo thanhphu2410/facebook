@@ -35,7 +35,7 @@
             </div>
 
             <span>Chọn thành phố</span>
-            <select class="custom-select my-2" name="province_id" id="provinces" data-target="{{ route('get-districts') }}">
+            <select class="custom-select my-2" name="province_id" id="provinces" data-target="{{ route('ajax.get-districts') }}">
                 @if (empty($profile->province_id))
                     <option selected value="">Chọn thành phố</option>
                 @endif 
@@ -48,7 +48,7 @@
             </select>
 
             <span>Chọn quận/huyện</span>
-            <select class="custom-select my-2" name="district_id" id="districts" data-target="{{ route('get-wards') }}">
+            <select class="custom-select my-2" name="district_id" id="districts" data-target="{{ route('ajax.get-wards') }}">
                 @if (empty($profile->province_id))
                     <option selected value="">Chọn quận/huyện</option>
                 @else 

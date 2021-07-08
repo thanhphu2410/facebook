@@ -23,7 +23,7 @@
             <i class="fab fa-facebook"></i>
         </a>
         <form class="form-inline my-2 my-lg-0 search" id="search-profile-form">
-            <input class="form-control mr-sm-2" type="search" data-target="{{ route('get-profiles') }}"
+            <input class="form-control mr-sm-2" type="search" data-target="{{ route('ajax.get-profiles') }}"
                 placeholder="Tìm kiếm trên facebook" aria-label="Search" id="search-profile-input" autocomplete="off">
             <i class="fas fa-search" id="search-icon"></i>
             @include('search.search-profile')
@@ -100,6 +100,7 @@
     <script src="{{ asset('packages/lightbox/js/lightbox.js') }}"></script>
     <script src="{{ asset('js/fontawesome.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/messenger.js') }}"></script>
     @yield('script')
 </body>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Models\Chat;
 use App\Models\ChatItem;
 use App\Models\ChatUser;
@@ -11,11 +12,13 @@ class ChatController extends Controller
 {
     private $chat;
     private $chat_user;
+    private $user;
 
     public function __construct()
     {
         $this->chat = new Chat();
         $this->chat_user = new ChatUser();
+        $this->user = new User();
     }
 
     public function index()
@@ -25,39 +28,33 @@ class ChatController extends Controller
         $html = view('messenger.index', compact('messages'))->render();
         return response()->json(['html' => $html]);
     }
-    
-    public function show(Chat $chat)
+
+    public function create()
     {
-        $html = view('messenger.chatbox', compact('chat'))->render();
+        $users = $this->user->get_users(['ids' => auth()->user()->all_friends_ids()]);
+        $html = view('messenger.new-message', compact('users'))->render();
         return response()->json(['html' => $html]);
     }
 
     public function store()
     {
         $user_ids = request('user_ids');
-        if (count($user_ids) > 1) {
-            $chat = Chat::create([]);
+        $title = $this->user->get_users(['ids' => $user_ids])->implode('full_name', ', ');
+        $user_ids[] = auth()->id();
+        $chat = $this->chat->get_chats(['number' => count($user_ids), 'user_ids' => $user_ids])->first();
+        
+        if (empty($chat)) {
+            $chat = Chat::create(['title' => $title]);
             foreach ($user_ids as $id) {
                 ChatUser::create(['user_id' => $id, 'chat_id' => $chat->id]);
             }
-        } else {
-            $chat_ids = $this->chat_user->get_chat_users(['auth_id' => auth()->id()])->pluck('chat_id');
-            $messages = $this->chat->get_chats(['ids' => $chat_ids]);
-            foreach ($messages as $message) {
-                $chat_users = $message->chat_users;
-                $is_exist = $chat_users->where('user_id', $user_ids[0]);
-                if ($is_exist->count() > 0 && $chat_users->count() == 2) {
-                    $chat = $message;
-                    break;
-                }
-            }
-
-            if (empty($chat)) {
-                $chat = Chat::create([]);
-                ChatUser::create(['user_id' => $user_ids[0], 'chat_id' => $chat->id]);
-                ChatUser::create(['user_id' => auth()->id(), 'chat_id' => $chat->id]);
-            }
         }
+        $html = view('messenger.chatbox', compact('chat'))->render();
+        return response()->json(['html' => $html]);
+    }
+    
+    public function show(Chat $chat)
+    {
         $html = view('messenger.chatbox', compact('chat'))->render();
         return response()->json(['html' => $html]);
     }

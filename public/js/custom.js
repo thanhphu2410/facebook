@@ -523,6 +523,8 @@ $(document).on("click", ".load-message", function(e) {
         url: $(this).attr("data-target"),
         type: "GET",
         success: function(data) {
+            $(".messenger-icon").removeClass("active");
+            $(".messenger-list-wrapper").remove();
             $(".messenger-item-wrapper").remove();
             $(".app").prepend(data.html);
             $("#message_wrapper").animate(
@@ -533,9 +535,17 @@ $(document).on("click", ".load-message", function(e) {
     });
 });
 
-$(document).on("click", ".new-message", function(e) {
+$(document).on("click", ".store-message", function(e) {
     e.preventDefault();
+
+    // remove input value in search bar
     $("#search-mess-input").val("");
+
+    // close messenger box
+    $(".messenger-icon").removeClass("active");
+    $(".messenger-list-wrapper").remove();
+
+    // load message
     $.ajax({
         url: $("#search-mess-input").attr("data-target") + "?name=",
         type: "GET",
@@ -545,6 +555,7 @@ $(document).on("click", ".new-message", function(e) {
         }
     });
 
+    // store new message
     var formData = new FormData($(this).closest("form")[0]);
     ajaxSetup();
     $.ajax({
@@ -616,12 +627,7 @@ $(document).on("click", ".messenger-icon", function(e) {
     let messenger_icon = $(this);
     if ($(".messenger-list-wrapper").length) {
         messenger_icon.removeClass("active");
-        if ($(".messenger-list-wrapper").hasClass("d-none")) {
-            $(".messenger-list-wrapper").removeClass("d-none");
-            messenger_icon.addClass("active");
-        } else {
-            $(".messenger-list-wrapper").addClass("d-none");
-        }
+        $(".messenger-list-wrapper").remove();
     } else {
         $.ajax({
             url: "/messenger",

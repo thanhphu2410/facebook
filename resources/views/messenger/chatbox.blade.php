@@ -1,5 +1,6 @@
 @php
 $user = $chat->chat_users[0]->user;
+$title = $chat->title ? $chat->title : $user->full_name;
 @endphp
 <div class="card shadow-lg messenger-item-wrapper">
     <div class="card-body p-0">
@@ -7,7 +8,7 @@ $user = $chat->chat_users[0]->user;
             <span class="online"></span>
             <img src="{{ $user->avatar_path }}">
             <div>
-                <p>{{ $user->full_name }}</p>
+                <p>{{ $title }}</p>
             </div>
         </div>
         <div class="message p-2" id="message_wrapper">

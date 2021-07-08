@@ -21,8 +21,8 @@
     background: #e4e6eb;
     cursor: pointer;
 }
-.messenger-list-wrapper .contact div,
-.messenger-item-wrapper .contact div {
+.messenger-list-wrapper .contact > div,
+.messenger-item-wrapper .contact > div {
     padding-left: 14px;
 }
 .messenger-list-wrapper .contact div span,
@@ -131,13 +131,14 @@
 .messenger-item-wrapper .actions-btn img {
     width: 30px;
 }
-.messenger-icon.active{
+.messenger-icon.active {
     background: #e7f3ff !important;
 }
-.messenger-icon.active > i{
+.messenger-icon.active > i {
     color: #1876f2;
 }
-.right-message img, .message .left-message .image {
+.right-message img,
+.message .left-message .image {
     width: 100%;
     height: auto;
     border-radius: 16px;

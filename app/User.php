@@ -85,9 +85,17 @@ class User extends Authenticatable
     {
         if (!empty($ids)) {
             if (is_int($ids)) {
-                $ids = [$ids]; // th truyền vào một id
+                $ids = [$ids]; // case truyền vào một id
             }
             $query->whereNotIn('id', $ids);
+        }
+        return $query;
+    }
+
+    public function scopeIds($query, $ids)
+    {
+        if (!empty($ids)) {
+            $query->whereIn('id', $ids);
         }
         return $query;
     }
@@ -169,10 +177,10 @@ class User extends Authenticatable
     {
         $results = [];
         foreach ($this->all_friends() as $friend) {
-            if (!in_array($friend->from, $results)) {
+            if (!in_array($friend->from, $results) && $friend->from != $this->id) {
                 $results[] = $friend->from;
             }
-            if (!in_array($friend->to, $results)) {
+            if (!in_array($friend->to, $results) && $friend->to != $this->id) {
                 $results[] = $friend->to;
             }
         }
@@ -184,6 +192,7 @@ class User extends Authenticatable
         $users = $this->query()
                 ->name(@$params['name'])
                 ->except_ids(@$params['except'])
+                ->ids(@$params['ids'])
                 ->latest()
                 ->get();
         return $users;
