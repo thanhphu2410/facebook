@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Chat extends Model
@@ -53,6 +54,17 @@ class Chat extends Model
             $query->has('chat_users', '=', $number);
         }
         return $query;
+    }
+
+    /*
+        ===============================ASSESORS===============================
+    */
+
+    public function getRandomUserAttribute()
+    {
+        $chat_users = $this->chat_users->where('user_id', '!=', auth()->id());
+        $rand = array_rand($chat_users->toArray());
+        return $chat_users[$rand]->user;
     }
 
     /*

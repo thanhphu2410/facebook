@@ -17,4 +17,9 @@ class ChatItem extends Model
     {
         return $this->hasOne('App\Models\ChatImage', 'chat_item');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

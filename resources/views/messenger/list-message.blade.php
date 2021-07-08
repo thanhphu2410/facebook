@@ -1,15 +1,16 @@
-@foreach ($messages ?? [] as $message)
+@foreach ($chats ?? [] as $chat)
     @php
-        $user = $message->chat_users[0]->user;
-        $title = $message->title ? $message->title : $user->full_name;
+        // $user = $chat->chat_users[0]->user->id != auth()->id() ? $chat->chat_users[0]->user : $chat->chat_users[1]->user;
+        $user = $chat->random_user;
+        $title = $chat->title ? $chat->title : $user->full_name;
     @endphp
-    <div class="contact load-message" data-target="{{ route('messenger.load', [$message->id]) }}">
+    <div class="contact load-message" data-target="{{ route('messenger.load', [$chat->id]) }}">
         <span class="online"></span>
         <img src="{{ $user->avatar_path }}">
         <div>
             <p>{{ $title }}</p>
-            @if ($message->last_mess)
-                <span>{{ $message->last_mess }} · {{ $message->updated_at->format('m-d') }}</span>
+            @if ($chat->last_mess)
+                <span>{{ $chat->last_mess }} · {{ $chat->updated_at->format('m-d') }}</span>
             @else
                 <span></span>
             @endif

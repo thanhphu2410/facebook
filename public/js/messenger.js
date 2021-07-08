@@ -14,22 +14,27 @@ $(document).on("click", ".new-message-box", function() {
 $(document).on("submit", "#new_message_form", function(e) {
     e.preventDefault();
     // store new message
-    var formData = new FormData($(this)[0]);
-    ajaxSetup();
-    $.ajax({
-        url: $(this).attr("action"),
-        type: "POST",
-        data: formData,
-        success: function(data) {
-            $(".messenger-item-wrapper").remove();
-            $(".app").prepend(data.html);
-            $("#message_wrapper").animate(
-                { scrollTop: $(document).height() },
-                1000
-            );
-        },
-        cache: false,
-        processData: false,
-        contentType: false
-    });
+    let checked = $('input[name="user_ids[]"]:checked').length;
+    if (checked > 0) {
+        var formData = new FormData($(this)[0]);
+        ajaxSetup();
+        $.ajax({
+            url: $(this).attr("action"),
+            type: "POST",
+            data: formData,
+            success: function(data) {
+                $(".messenger-item-wrapper").remove();
+                $(".app").prepend(data.html);
+                $("#message_wrapper").animate(
+                    { scrollTop: $(document).height() },
+                    1000
+                );
+            },
+            cache: false,
+            processData: false,
+            contentType: false
+        });
+    } else {
+        $(".messenger-item-wrapper").remove();
+    }
 });

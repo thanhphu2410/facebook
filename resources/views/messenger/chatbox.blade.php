@@ -1,5 +1,5 @@
 @php
-$user = $chat->chat_users[0]->user;
+$user = $chat->random_user;
 $title = $chat->title ? $chat->title : $user->full_name;
 @endphp
 <div class="card shadow-lg messenger-item-wrapper">
@@ -23,7 +23,7 @@ $title = $chat->title ? $chat->title : $user->full_name;
                     </div>
                 @else
                     <div class="left-message d-flex align-items-center mt-2">
-                        <img src="{{ $user->avatar_path }}">
+                        <img src="{{ $item->user->avatar_path }}">
                         @if ($item->image)
                             <img class="image ml-2" src="{{ $item->image->image_path }}">
                         @else

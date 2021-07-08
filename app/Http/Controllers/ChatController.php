@@ -24,8 +24,8 @@ class ChatController extends Controller
     public function index()
     {
         $chat_ids = $this->chat_user->get_chat_users(['auth_id' => auth()->id()])->pluck('chat_id');
-        $messages = $this->chat->get_chats(['ids' => $chat_ids]);
-        $html = view('messenger.index', compact('messages'))->render();
+        $chats = $this->chat->get_chats(['ids' => $chat_ids]);
+        $html = view('messenger.index', compact('chats'))->render();
         return response()->json(['html' => $html]);
     }
 
@@ -39,7 +39,7 @@ class ChatController extends Controller
     public function store()
     {
         $user_ids = request('user_ids');
-        $title = $this->user->get_users(['ids' => $user_ids])->implode('full_name', ', ');
+        $title = count($user_ids) > 1 ? $this->user->get_users(['ids' => $user_ids])->implode('full_name', ', ') : null;
         $user_ids[] = auth()->id();
         $chat = $this->chat->get_chats(['number' => count($user_ids), 'user_ids' => $user_ids])->first();
         
