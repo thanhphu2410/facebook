@@ -17,7 +17,9 @@ class ProfileController extends Controller
         $auth = auth()->user();
         $check = ($profile->id == $auth->id) ? 'edit' : 'show';
         $posts = $this->post->get_posts(['user_ids' => [$profile->id]]);
-        return view("profile.$check.profile", compact('profile', 'auth', 'posts'));
+        $post_images = $auth->post_images->take(9);
+        $friends = $auth->all_friends()->take(9);
+        return view("profile.$check.profile", compact('profile', 'auth', 'posts', 'post_images', 'friends'));
     }
 
     public function tabIntroduction(User $profile)

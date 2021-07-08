@@ -16,7 +16,9 @@ $title = $chat->title ? $chat->title : $user->full_name;
                 @if ($item->user_id == auth()->id())
                     <div class="right-message mt-3">
                         @if ($item->image)
-                            <img src="{{ $item->image->image_path }}">
+                            <a href="{{ $item->image->image_path }}" data-lightbox="chat_image_{{ $item->id }}">
+                                <img src="{{ $item->image->image_path }}">
+                            </a>
                         @else
                             <p>{{ $item->content }}</p>
                         @endif
@@ -25,7 +27,9 @@ $title = $chat->title ? $chat->title : $user->full_name;
                     <div class="left-message d-flex align-items-center mt-2">
                         <img src="{{ $item->user->avatar_path }}">
                         @if ($item->image)
-                            <img class="image ml-2" src="{{ $item->image->image_path }}">
+                            <a href="{{ $item->image->image_path }}" data-lightbox="chat_image_{{ $item->id }}">
+                                <img class="image ml-2" src="{{ $item->image->image_path }}">
+                            </a>
                         @else
                             <p>{{ $item->content }}</p>
                         @endif

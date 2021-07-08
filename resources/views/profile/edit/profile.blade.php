@@ -49,7 +49,7 @@
                         <div>
                             <button type="button" class="btn btn-light">
                                 Bạn bè
-                                <span class="friend-count">{{ $auth->all_friends()->count() }}</span>
+                                <span class="friend-count">{{ $profile->all_friends()->count() }}</span>
                             </button>
                         </div>
                         <div>

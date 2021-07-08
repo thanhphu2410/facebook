@@ -134,6 +134,11 @@ class User extends Authenticatable
         return '/images/cover-photo.jpeg';
     }
 
+    public function getPostImagesAttribute()
+    {
+        return $this->posts->load('images')->pluck('images')->flatten()->pluck('image_path');
+    }
+
     /*
         ===============================MUTATORS===============================
     */
