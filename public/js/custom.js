@@ -434,22 +434,16 @@ $(document).on("keyup", "#search-profile-input", function(e) {
 $(window).on("scroll", function(e) {
     e.preventDefault();
     if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-        let take = parseInt($("#take_val").val());
-        let offset = parseInt($("#offset_val").val());
+        let page = parseInt($("#page").val());
         let forWho = $("#all_posts").attr("for");
         $.ajax({
-            url:
-                "/load-more-posts?take=" +
-                take +
-                "&offset=" +
-                offset +
-                "&for=" +
-                forWho,
+            url: "/load-more-posts?" + "&page=" + page + "&for=" + forWho,
             type: "GET",
             success: function(data) {
-                $("#take_val").val(take + 10);
-                $("#offset_val").val(offset + 10);
-                $("#all_posts").append(data.html);
+                if (data.html != "") {
+                    $("#page").val(page + 1);
+                    $("#all_posts").append(data.html);
+                }
             }
         });
     }

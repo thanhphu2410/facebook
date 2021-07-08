@@ -17,7 +17,7 @@ class HomeController extends Controller
     {
         $user_ids = auth()->user()->all_friends_ids();
         $user_ids[] = auth()->id();
-        $posts = $this->post->get_posts(['user_ids' => $user_ids]);
+        $posts = $this->post->get_posts(['user_ids' => $user_ids, 'paginate' => 5]);
         return view('home.index', compact('posts'));
     }
 }

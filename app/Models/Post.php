@@ -33,10 +33,10 @@ class Post extends Model
     {
         $posts = $this->query()
                 ->user_ids(@$params['user_ids'])
-                ->latest()
-                ->offset($params['offset'] ?? 0)
-                ->take($params['take'] ?? 5)
-                ->get();
-        return $posts;
+                ->latest();
+        // ->offset(@$params['offset'] ?? 0)
+        // ->take(@$params['take'] ?? 5)
+        // ->get();
+        return !empty(@$params['paginate']) ? $posts->paginate(@$params['paginate']) : $posts->get();
     }
 }

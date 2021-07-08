@@ -27,9 +27,11 @@
         </div>
     </div>
 
-    <div id="all_posts" for="{{ implode(',', $auth->all_friends_ids()) }}">
-        <input type="hidden" value="10" id="take_val">
-        <input type="hidden" value="5" id="offset_val">
+    @php
+        $forWho = implode(',', $auth->all_friends_ids()) . ',' . $auth->id;
+    @endphp
+    <div id="all_posts" for="{{ $forWho }}">
+        <input type="hidden" value="2" id="page">
         @foreach ($posts as $item)
             @include('home.post')
         @endforeach

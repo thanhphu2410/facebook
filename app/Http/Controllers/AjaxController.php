@@ -66,8 +66,7 @@ class AjaxController extends Controller
     {
         $posts = $this->post->get_posts([
             'user_ids' => explode(",", request('for')),
-            'offset' => request('offset'),
-            'take' => request('take')
+            'paginate' => 5
         ]);
         $html = "";
         foreach ($posts as $item) {

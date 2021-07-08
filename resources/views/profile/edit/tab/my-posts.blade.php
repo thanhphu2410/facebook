@@ -73,8 +73,7 @@
         </div>
 
         <div id="all_posts" for="{{ $profile->id }}">
-            <input type="hidden" value="10" id="take_val">
-            <input type="hidden" value="5" id="offset_val">
+            <input type="hidden" value="2" id="page">
             @foreach ($posts as $item)
                 @include('home.post')
             @endforeach
