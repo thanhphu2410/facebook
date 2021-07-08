@@ -15,6 +15,7 @@ class CreateChatsTable extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable()->default(null);
             $table->longText('last_mess')->nullable()->default(null);
             $table->foreignId('from')->nullable()->constrained()->onDelete('cascade')->on('users');
             $table->integer('status')->default(0)->comment('0 => sent, 1 => seen');
