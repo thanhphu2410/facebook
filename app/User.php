@@ -202,4 +202,9 @@ class User extends Authenticatable
                 ->get();
         return $users;
     }
+
+    public function isOnline()
+    {
+        return cache()->has('user-is-online-' . $this->id);
+    }
 }

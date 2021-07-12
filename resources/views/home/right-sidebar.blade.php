@@ -18,20 +18,17 @@
         </div>
     </div>
     <div class="mt-2">
-        <div class="contact">
-            <span class="online"></span>
-            <img src="{{ $auth->avatar_path }}">
-            <span>{{ $auth->full_name }}</span>
-        </div>
-
-        <div class="contact">
-            <img src="{{ $auth->avatar_path }}">
-            <span>{{ $auth->full_name }}</span>
-        </div>
-
-        <div class="contact">
-            <img src="{{ $auth->avatar_path }}">
-            <span>{{ $auth->full_name }}</span>
-        </div>
+        @foreach ($friends as $friend)
+            @php
+                $user = $friend->from != $auth->id ? $friend->from_user : $friend->to_user;
+            @endphp
+            <div class="contact">
+                @if ($user->isOnline())
+                    <span class="online"></span>
+                @endif
+                <img src="{{ $user->avatar_path }}">
+                <span>{{ $user->full_name }}</span>
+            </div>
+        @endforeach
     </div>
 </div>
