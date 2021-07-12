@@ -22,13 +22,17 @@
             @php
                 $user = $friend->from != $auth->id ? $friend->from_user : $friend->to_user;
             @endphp
-            <div class="contact">
-                @if ($user->isOnline())
-                    <span class="online"></span>
-                @endif
-                <img src="{{ $user->avatar_path }}">
-                <span>{{ $user->full_name }}</span>
-            </div>
+            <form action="{{ route('messenger.store') }}" method="post">
+                @csrf
+                <input type="hidden" value="{{ $user->id }}" name="user_ids[]">
+                <div class="contact store-message">
+                    @if ($user->isOnline())
+                        <span class="online"></span>
+                    @endif
+                    <img src="{{ $user->avatar_path }}">
+                    <span>{{ $user->full_name }}</span>
+                </div>
+            </form>
         @endforeach
     </div>
 </div>

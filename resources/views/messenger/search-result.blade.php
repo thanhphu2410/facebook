@@ -3,7 +3,9 @@
         @csrf
         <input type="hidden" value="{{ $user->id }}" name="user_ids[]">
         <div class="contact store-message">
-            <span class="online"></span>
+            @if ($user->isOnline())
+                <span class="online"></span>
+            @endif
             <img src="{{ $user->avatar_path }}">
             <div>
                 <p>{{ $user->full_name }}</p>

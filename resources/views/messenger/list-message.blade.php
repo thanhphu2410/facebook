@@ -1,6 +1,5 @@
 @foreach ($chats ?? [] as $chat)
     @php
-        // $user = $chat->chat_users[0]->user->id != auth()->id() ? $chat->chat_users[0]->user : $chat->chat_users[1]->user;
         $user = $chat->random_user;
         $title = $chat->title ? $chat->title : $user->full_name;
     @endphp

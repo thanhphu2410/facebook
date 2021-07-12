@@ -102,6 +102,8 @@ $(document).on("click", ".gotoprofile", function(e) {
             );
             if (auth_id == profile_id) {
                 changeActive($(".main-nav"), $("#profile-nav"));
+            } else {
+                $("#profile-nav").removeClass("active");
             }
             changeAddressBar(url);
         },
@@ -111,11 +113,6 @@ $(document).on("click", ".gotoprofile", function(e) {
             }
         }
     });
-
-    // let result = sendAjax($(this).attr("href"));
-    // if (result.is_my_profile) {
-    //     changeActive($(".main-nav"), $("#profile-nav"));
-    // }
 });
 
 $(document).on("click", "#introduction-tab", function(e) {

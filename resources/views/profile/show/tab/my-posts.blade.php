@@ -43,11 +43,17 @@
                 </div>
                 <div class="mt-3 recent-friends row">
                     @foreach ($friends as $friend)
+                        @php
+                            $user = $friend->from != $profile->id ? $friend->from_user : $friend->to_user;
+                        @endphp
                         <div class="col-4 text-center mb-2">
-                            <img src="{{ $profile->avatar_path }}" alt="">
-                            <h6 class="mt-2">
-                                {{ $friend->from != $auth->id ? $friend->from_user->full_name : $friend->to_user->full_name }}
-                            </h6>
+                            <a class="gotoprofile main-nav" href="{{ route('profile', [$user->id]) }}"
+                                id="profile-nav">
+                                <img src="{{ $user->avatar_path }}" alt="">
+                                <h6 class="mt-2">
+                                    {{ $user->full_name }}
+                                </h6>
+                            </a>
                         </div>
                     @endforeach
                 </div>
