@@ -33,7 +33,9 @@ class ProfileController extends Controller
     {
         $check = ($profile->id == auth()->id()) ? 'edit' : 'show';
         $posts = $this->post->get_posts(['user_ids' => [$profile->id]]);
-        $html = view("profile.$check.tab.my-posts", compact('profile', 'posts'))->render();
+        $post_images = $profile->post_images->take(9);
+        $friends = $profile->all_friends()->take(9);
+        $html = view("profile.$check.tab.details", compact('profile', 'posts', 'post_images', 'friends'))->render();
         return response()->json(['html' => $html]);
     }
 
