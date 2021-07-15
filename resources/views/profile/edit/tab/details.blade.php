@@ -1,4 +1,4 @@
-<div class="d-flex align-items-start justify-content-center mb-5 mt-3 content">
+<div class="d-flex align-items-start justify-content-center mb-5 mt-3 content profile-content">
     <div class="information col-3 mr-2">
         <div class="card introduction mb-2 shadow-sm">
             <div class="card-body">

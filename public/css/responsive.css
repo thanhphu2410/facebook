@@ -1,0 +1,109 @@
+@media only screen and (max-width: 1240px) {
+    #navContent ul {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 1180px) {
+    .right-sidebar {
+        display: none;
+    }
+    .content {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+    .profile-content {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .profile-content .information {
+        display: none;
+    }
+    .profile-content .my-posts {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+}
+
+@media only screen and (max-width: 905px) {
+    #cover-image {
+        height: 250px;
+    }
+    #cover-btn {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 827px) {
+    .profile .navigation > div {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .profile-content .my-posts {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    #cover-btn {
+        display: none;
+    }
+    .profile .cover-avatar .avatar {
+        position: relative;
+        margin-top: -80px;
+    }
+    .profile .cover-avatar .avatar img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 3px solid white;
+        object-fit: cover;
+    }
+    .profile .cover-avatar .avatar-btn {
+        border: 0;
+        border-radius: 50%;
+        padding: 3px 5px;
+        position: absolute;
+        bottom: 8px;
+        right: 41%;
+        background: #e4e6eb;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    .left-sidebar {
+        display: none;
+    }
+    .content {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 610px) {
+    #search-profile-form {
+        display: none;
+    }
+    .content hr {
+        display: none;
+    }
+    .content .post-options {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    .reaction-count {
+        font-size: 14px;
+    }
+    .profile .navigation > div {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .reaction-count {
+        font-size: 13px;
+    }
+}

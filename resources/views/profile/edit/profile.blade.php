@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <div class="text-center">
+            <div class="text-center mb-2">
                 <h2 class="mt-3 mb-2">{{ $profile->full_name }}</h2>
                 <a href="#" class="add-histoy">Thêm tiểu sử</a>
             </div>

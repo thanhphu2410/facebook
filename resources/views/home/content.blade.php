@@ -1,4 +1,4 @@
-<div class="mt-4 pl-2 col-6 mb-5 content">
+<div class="mt-4 pl-2 col-lg-6 mb-5 content">
     <div class="card shadow-sm">
         <div class="card-body">
             <div class="d-flex align-items-center">
@@ -8,7 +8,7 @@
                 </div>
             </div>
             <hr>
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center post-options">
                 <div class="stream col-4">
                     <i></i>
                     <span class="ml-2">Video trực tiếp</span>

@@ -402,6 +402,17 @@ $(document).on("focus", "#search-profile-input", function(e) {
     $("#search-icon").css("display", "none");
 });
 
+$(document).on("click", "#search-icon", function(e) {
+    e.preventDefault();
+    $(this)
+        .siblings("#search-profile-input")
+        .val("");
+    $(this)
+        .siblings(".search-profile")
+        .css("display", "block");
+    $(this).css("display", "none");
+});
+
 $(document).on(
     "click",
     ".app, .gotoprofile, #navContent, #exit-search-icon",
