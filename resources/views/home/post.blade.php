@@ -2,10 +2,10 @@
     <div class="card-body p-0">
         <div class="d-flex align-items-center p-3">
             <div class="col-9 d-flex align-items-center">
-                <img src="{{ $auth->avatar_path }}" class="avatar">
+                <img src="{{ $post->user->avatar_path }}" class="avatar">
                 <div class="ml-3">
                     <a class="gotoprofile" href="{{ route('profile', [$auth->id]) }}">
-                        <h6>{{ $auth->full_name }}</h6>
+                        <h6>{{ $post->user->full_name }}</h6>
                     </a>
                     <span class="time_post mr-1">{{ $post->created_at->format('d-m') }}</span>
                     <i class="fas fa-globe-europe"></i>
