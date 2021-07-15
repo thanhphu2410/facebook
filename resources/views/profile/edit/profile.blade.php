@@ -64,7 +64,7 @@
         </div>
 
         <div class="tab">
-            @include('profile.edit.tab.my-posts')
+            @include('profile.edit.tab.details')
         </div>
     </div>
 @endsection

@@ -2,7 +2,7 @@
     <div class="d-flex align-items-start p-2">
         <img src="{{ $comment->user->avatar_path }}" class="avatar">
         <div class="ml-2 px-3 py-2 comment-list">
-            <p>
+            <p class="comment-user-name">
                 <b>{{ $comment->user->full_name }}</b>
             </p>
             <span>{{ $comment->body }}</span>
@@ -18,7 +18,7 @@
 @else
     <div class="d-flex align-items-center p-2">
         <img src="{{ $comment->user->avatar_path }}" class="avatar">
-        <p class="ml-3">
+        <p class="ml-3 comment-user-name">
             <b>{{ $comment->user->full_name }}</b>
         </p>
     </div>

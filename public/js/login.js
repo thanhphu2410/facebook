@@ -74,7 +74,7 @@ $(function() {
     // $("#register-btn").on("click", function() {
     //     var parent = $(this).parents("form");
     //     if (parent.find("input[name=last_name]").val().trim() == false) {
-            
+
     //     }
     // });
 });

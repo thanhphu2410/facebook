@@ -37,7 +37,7 @@ $title = $chat->title ? $chat->title : $user->full_name;
                 @endif
             @endforeach
         </div>
-        <form class="my-2 input-form" id="individual_chat_form" method="POST" enctype="multipart/form-data">
+        <form class="my-2 input-form" id="chat_form" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" value="{{ $chat->id }}" name="chat_id">
             <div class="d-flex align-items-end">

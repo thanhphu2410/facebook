@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Models\Chat;
 use App\Models\Post;
-use App\Models\ChatUser;
 use App\Models\District;
 use App\Models\Province;
 
@@ -14,14 +13,12 @@ class AjaxController extends Controller
     private $post;
     private $user;
     private $chat;
-    private $chat_user;
     
     public function __construct()
     {
         $this->post = new Post();
         $this->user = new User();
         $this->chat = new Chat();
-        $this->chat_user = new ChatUser();
     }
     
     public function getDistricts()
@@ -69,8 +66,8 @@ class AjaxController extends Controller
             'paginate' => 5
         ]);
         $html = "";
-        foreach ($posts as $item) {
-            $html .= view('home.post', compact('item'))->render();
+        foreach ($posts as $post) {
+            $html .= view('home.post', compact('post'))->render();
         }
         return response()->json(['html' => $html]);
     }

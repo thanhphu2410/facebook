@@ -1,0 +1,156 @@
+.profile .cover-avatar {
+    background: #ffffff;
+    background: -webkit-linear-gradient(to top, #ffffff, #2d2d2d);
+    background: linear-gradient(to top, #ffffff, #2d2d2d);
+}
+.profile .cover-avatar .cover-photo {
+    position: relative;
+}
+.profile .cover-avatar .cover-photo img {
+    object-fit: cover;
+    border-radius: 0px 0px 10px 10px;
+}
+.profile .cover-avatar .cover-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
+}
+.profile .cover-avatar .avatar {
+    position: relative;
+    margin-top: -150px;
+}
+.profile .cover-avatar .avatar img {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+}
+.profile .cover-avatar .avatar-btn {
+    border: 0;
+    border-radius: 50%;
+    padding: 5px 8px;
+    position: absolute;
+    bottom: 15px;
+    right: 41%;
+    background: #e4e6eb;
+}
+.profile .cover-avatar .avatar-btn:hover {
+    background: #e1e1e1;
+}
+.profile .cover-avatar .avatar-btn i {
+    font-size: 20px;
+}
+.profile .add-histoy {
+    color: #1877f2;
+}
+.profile .add-histoy:hover {
+    text-decoration: underline;
+}
+.profile .navigation button {
+    padding: 12px 16px;
+    background: white;
+    border: 0;
+    margin-right: 3px;
+    color: #666666;
+    font-weight: 500;
+}
+.profile .navigation button:hover {
+    background: #f1f1f1;
+}
+.profile .navigation button:focus {
+    box-shadow: none !important;
+}
+.profile .navigation button.active {
+    background: white !important;
+    border-radius: 0;
+    border-bottom: 3px solid #1877f2 !important;
+}
+.profile .navigation .add-friend-btn,
+.profile .navigation .add-friend-btn:hover {
+    color: white;
+    background: #1877f2;
+    padding: 6px 16px;
+}
+.profile .navigation .cancel-friend-btn,
+.profile .navigation .cancel-friend-btn:hover,
+.profile .navigation .friend-btn,
+.profile .navigation .friend-btn:hover {
+    color: rgb(0, 0, 0);
+    background: #e4e6eb;
+    padding: 6px 16px;
+}
+.profile .content .introduction button {
+    background: #e4e6eb;
+}
+.profile .content .introduction button:hover {
+    background: #dedfe2;
+}
+.profile .content .my-posts span {
+    font-size: 13px;
+}
+.profile .information .all-images-btn,
+.profile .information .all-friends-btn {
+    font-size: 13px;
+}
+.profile .information .recent-images img {
+    width: 97px;
+    height: 97px;
+    object-fit: cover;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+.profile .information .recent-friends img {
+    width: 91px;
+    height: 91px;
+    object-fit: cover;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+.profile .information .number-of-friends {
+    color: #595959;
+}
+.profile .tab .introduction-tab .card {
+    border-radius: 0;
+}
+.profile .tab .introduction-tab .navigation {
+    border-right: 1px solid #d7d8d8;
+}
+.profile .tab .introduction-tab .navigation a.active {
+    color: #1876f2;
+    background-color: #e7f3ff;
+}
+.profile .tab .introduction-tab .tab-pane .circle-plus {
+    border-radius: 50%;
+    border: 2px solid #1877f2;
+    background: white;
+    padding: 0px 6px;
+}
+.profile .tab .introduction-tab .tab-pane .circle-plus i {
+    font-size: 13px;
+    color: #1876f2;
+}
+.profile .tab .introduction-tab .tab-pane a {
+    color: #1876f2;
+}
+.profile .tab .introduction-tab .tab-pane a:hover {
+    text-decoration: underline;
+}
+.profile .about_places_title {
+    font-size: 15px;
+    font-weight: 300;
+    color: #7b7b7b;
+}
+.profile .friend-count {
+    font-size: 13px;
+    font-weight: 300;
+}
+.profile .navigation .messenger-btn {
+    color: white;
+    background: #1877f2;
+    padding: 6px 16px;
+}
+.profile .navigation .messenger-btn:hover {
+    background: #166ee0;
+}
