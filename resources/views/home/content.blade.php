@@ -32,7 +32,7 @@
     @endphp
     <div id="all_posts" for="{{ $forWho }}">
         <input type="hidden" value="2" id="page">
-        @foreach ($posts as $item)
+        @foreach ($posts as $post)
             @include('home.post')
         @endforeach
     </div>

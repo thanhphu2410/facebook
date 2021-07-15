@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('messenger/store', 'ChatController@store')->name('messenger.store');
     Route::post('messenger/store-item', 'ChatController@storeItem');
     Route::resource('posts', 'PostController');
+    Route::resource('comments', 'CommentController');
 });
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

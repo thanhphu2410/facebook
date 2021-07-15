@@ -40,6 +40,9 @@ a:hover {
 .cursor-wait {
     cursor: wait;
 }
+button {
+    box-shadow: none !important;
+}
 /* ==============================END SETUP CSS============================== */
 
 /* ==============================BEGIN SCROLLBAR============================== */

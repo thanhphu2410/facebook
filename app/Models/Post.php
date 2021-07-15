@@ -8,6 +8,10 @@ class Post extends Model
 {
     protected $fillable = ['user_id', 'body'];
 
+    /*
+        ===============================RELATIONSHIPS===============================
+    */
+
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -22,6 +26,15 @@ class Post extends Model
     {
         return $this->hasMany('App\Models\Like');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
+    /*
+        ===============================LOCAL SCOPE===============================
+    */
     
     public function scopeUser_ids($query, $user_ids)
     {
@@ -29,14 +42,15 @@ class Post extends Model
         return $query;
     }
 
+    /*
+        ===============================METHODS===============================
+    */
+
     public function get_posts($params = [])
     {
         $posts = $this->query()
                 ->user_ids(@$params['user_ids'])
                 ->latest();
-        // ->offset(@$params['offset'] ?? 0)
-        // ->take(@$params['take'] ?? 5)
-        // ->get();
         return !empty(@$params['paginate']) ? $posts->paginate(@$params['paginate']) : $posts->get();
     }
 }

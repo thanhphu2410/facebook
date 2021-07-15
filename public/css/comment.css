@@ -1,0 +1,36 @@
+.comment-form {
+    width: 100%;
+}
+.comments-wrapper .textarea {
+    background: #f2f2f5;
+    border-radius: 20px;
+    height: 40px;
+    padding-left: 10px;
+    width: 100%;
+}
+.comments-wrapper .avatar {
+    width: 40px !important;
+    height: 40px !important;
+}
+.comments-wrapper .textarea textarea {
+    border-radius: 20px;
+    background: #f2f2f5;
+    border: 0;
+    resize: none;
+    height: 40px;
+    outline: none;
+    padding-top: 7px;
+    width: 90%;
+}
+.comment-list {
+    background: #f2f2f5;
+    border-radius: 20px;
+    /* width: 100%; */
+}
+.comment-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 21px;
+    object-fit: cover;
+    margin-left: 55px;
+}
