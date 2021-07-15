@@ -81,19 +81,14 @@
                             @endif
                         </div>
                         <div>
-                            @foreach ($friends as $friend)
-                                @php
-                                    $user = $friend->from != $auth->id ? $friend->from_user : $friend->to_user;
-                                @endphp
-                                <form action="{{ route('messenger.store') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" value="{{ $user->id }}" name="user_ids[]">
-                                    <button type="button" class="btn btn-primary messenger-btn ml-2 store-message">
-                                        <i class="fab fa-facebook-messenger"></i>
-                                        Nhắn tin
-                                    </button>
-                                </form>
-                            @endforeach
+                            <form action="{{ route('messenger.store') }}" method="post">
+                                @csrf
+                                <input type="hidden" value="{{ $profile->id }}" name="user_ids[]">
+                                <button type="button" class="btn btn-primary messenger-btn ml-2 store-message">
+                                    <i class="fab fa-facebook-messenger"></i>
+                                    Nhắn tin
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
