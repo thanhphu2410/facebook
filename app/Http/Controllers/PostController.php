@@ -14,7 +14,7 @@ class PostController extends Controller
             $path = store_file($image, 'post-images');
             $post->images()->create(['image_path' => '/' . $path]);
         }
-        $html = view('home.post', ['item' => $post])->render();
+        $html = view('home.post', ['post' => $post])->render();
         return response()->json(['html' => $html]);
     }
 }
